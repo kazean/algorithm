@@ -1,4 +1,4 @@
-package algorithm.graphtree;
+package algorithm.graphtree.greedy;
 
 import java.util.Arrays;
 import java.util.Scanner;

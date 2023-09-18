@@ -1,4 +1,4 @@
-package algorithm.graphtree;
+package algorithm.graphtree.greedy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
