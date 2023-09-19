@@ -4,7 +4,7 @@
 - [참고](https://loosie.tistory.com/146)
 ### 다익스트라(Dijkstra) Algorithm - algorithm.graphtree.Dijkstra
 하나의 정점에서 출발했을 때 다른 모든 정점으로의 최단 경로를 구하는 알고리즘  
-매번 가장 적은 비요을 가진 노드를 하나씩 꺼낸 다음 그 다음 노드를 거쳐가는 비용, 즉 가장 적은 비용을 하나씩 선택하는 로직
+매번 가장 적은 비용을 가진 노드를 하나씩 꺼낸 다음 그 다음 노드를 거쳐가는 비용, 즉 가장 적은 비용을 하나씩 선택하는 로직
 - 매커니즘
 > 단일 시작점 최단 경로 알고리즘, 시작정점 s에서 다른 정점들 까지의 최단 거리를 계산  
 DP를 활용한 최단경로 탐색 알고리즘
@@ -20,7 +20,7 @@ DP를 활용한 최단경로 탐색 알고리즘
 > 인접행렬 O(V^2), 권장> 인접리스트 + 우선순위큐 O((V+E)logV)
 
 
-#### 우선순위 큐를 사용하는 다익스트라 알고리즘
+#### 우선순위 큐를 사용하는 다익스트라 알고리즘 - algorithm.graphtree.FloydWarshall
 다익스트라 알고리즘은 너비 우선 탐색과 유사한 형태를 가진 알고리즘으로, 시작점에서 가까운 순서대로 정점을 방문  
 가중치가 있는 그래프에서는 너비 우선 탐색을 그대로 적용할 순 없기 때문에 우선순위 큐를 사용하여 이를 해결
 - 우선순위 큐 + BFS
@@ -82,6 +82,67 @@ public class Dijkstra {
 모든 정점에서 다른 모든 정점으로의 최단 경로를 구하는 알고리즘  
 거쳐가는 정점을 하나씩 다 설정을 하여 직접 확인하는 방법, 즉 거쳐가는 정점을 기준으로 최단 거리를 구하도록 구성
 
+
+- 매커니즘
+> 2차원 그래프  
+Ck(u, v) = Math.min((Ck-1(u,k) + Ck-1(k, v)), Ck-1(u, v))
+
+- 공간 복잡도
+> O(V^2)
+- 시간 복잡도
+> 3중 포문 O(V^3)
+
+```java
+public class FloydWarshall {
+
+	public static void main(String[] args) {
+		int[][] a = {{1,2,5}, {2,1,7},{3,1,2},{1,4,8},{2,3,9},
+				{3,4,3}, {4,3,3}};
+		int n =4;
+		solution(n,a);
+	}
+	
+	static void solution(int n, int[][] arr) {
+		int[][] floyd = new int[n][n];
+		
+		// 결과 그래프 초기화 
+		for(int i=0; i<n; i++) {
+			for(int j=0; j<n; j++){
+				if(i==j) {
+					floyd[i][j]	 =0;
+				}else floyd[i][j] = 1_000_000_000;
+			}
+		}
+		
+		// 결과 그래프 입력 
+		for(int i=0; i<arr.length; i++) {
+			floyd[arr[i][0]-1][arr[i][1]-1] = arr[i][2];
+		}
+		
+		// Floyd k : 거쳐가는 노드 (기준) 
+		for(int k=0; k<n; k++) {
+			// i : 출발 노드  
+			for(int i=0; i<n; i++) {
+				// j : 도착 노드 
+				for(int j=0; j<n; j++) {
+					// i에서 j로 가는 최소 비용 VS 
+					//         i에서 노드 k로 가는 비용 + 노드 k에서 jY로 가는 비용
+					if(floyd[i][k] + floyd[k][j] < floyd[i][j]) {
+						floyd[i][j] = floyd[i][k] + floyd[k][j];
+					}
+				}
+			}
+		}
+		
+		for(int i=0; i<n; i++) {
+			for(int j=0; j<n; j++) {
+				System.out.print(floyd[i][j]+ " ");
+			}
+			System.out.println();
+		}
+	}
+}
+```
 
 ---
 ## Minimun SanningTree MST(최소신장트리 최소스패닝트리)
