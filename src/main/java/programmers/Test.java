@@ -2,12 +2,11 @@ package programmers;
 
 public class Test {
     public static void main(String[] args) {
-        char a = 'a';
-        char A = 'A';
-        char z = 'z';
-        System.out.println((int)a);
-        System.out.println((int)A);
-        System.out.println((int)A - a);
-        System.out.println((char)(z - 32));
+//        Kmp.KMP_old("ABDEGH", "DE");
+//        Kmp.KMP_old("ababacabacaaba", "abacaaba");
+        String origin = "ABDEGH";
+        String origin2 = "ababacabacaaba";
+        System.out.println(origin.indexOf("DE"));
+        System.out.println(origin2.indexOf("abacaaba"));
     }
 }

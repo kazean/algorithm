@@ -1,6 +1,6 @@
 # 검색, 탐색 알고리즘
 ---
-## KMP 알고리즘
+## KMP 알고리즘 - algorithm.search.Kmp
 문자열 매칭 알고리즘  
 텍스트길이 N, 패턴의 길이 M 단순 검색시 시간 복잡도 O(NM) > KMP O(N+M)
 
