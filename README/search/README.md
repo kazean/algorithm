@@ -16,14 +16,14 @@ static int[] makeTable(String pattern) {
         int idx=0;
         for(int i=1; i<n; i++) {
         // 일치하는 문자가 발생했을 때(idx>0), 연속적으로 더 일치하지 않으면 idx = table[idx-1]로 돌려준다.
-        while(idx>0 && pattern.charAt(i) != pattern.charAt(idx)) {
-        idx = table[idx-1];
-        }
-
-        if(pattern.charAt(i) == pattern.charAt(idx)) {
-        idx += 1;
-        table[i] = idx;
-        }
+            while(idx>0 && pattern.charAt(i) != pattern.charAt(idx)) {
+                idx = table[idx-1];
+            }
+    
+            if(pattern.charAt(i) == pattern.charAt(idx)) {
+                idx += 1;
+                table[i] = idx;
+            }
         }
         return table;
 }
