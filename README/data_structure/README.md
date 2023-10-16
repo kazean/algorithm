@@ -15,7 +15,9 @@ class Stack<E> extends Vector<E> {
     public synchronized int search(Object o){}
 }
 ```
-### [스택 - 에디터 - 1406](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses5_Main_1406.java)
+
+
+------------------------------------------------------------------------------------------
 ### [큐 - 10845](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Queue_Main_10845.java)
 ```java
 LinkedList<Integer> q = new LinkedList<>();
@@ -37,9 +39,10 @@ public class LinkedList<E>
 }
 ```
 > LinkedList 로 구현
-### [스택 - 단어뒤집기 - 9093](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses1_Main_9093.java)
-### [스택 - 괄호 - 9012](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses2_Main_9012.java)
 
+
+------------------------------------------------------------------------------------------
+### [스택 - 에디터 - 1406](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses5_Main_1406.java)
 - 시간초과
 > ListIterator
 ```java
@@ -55,9 +58,17 @@ public interface ListIterator<E> extends Iterator<E> {
     void add(E e);
 }
 ```
+### [스택 - 단어뒤집기 - 9093](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses1_Main_9093.java)
+### [스택 - 괄호 - 9012](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses2_Main_9012.java)
+
+
+------------------------------------------------------------------------------------------
 ## 자료구조 1 (연습)
 ### [스택 - 단어뒤집기2 - 17413](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses3_Main_17413.java)
 ### [스택 - 쇠막대기 - 10799](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses4_Main_10799.java)
+
+
+------------------------------------------------------------------------------------------
 ## 자료구조 1 (참고)
 
 
