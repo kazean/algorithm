@@ -1,6 +1,6 @@
 package baekjoon.basic1.datastructor;
 /*
-9093
+단어 뒤집기 - 9093
 
 2
 I am happy today
@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Main_9093 {
+public class Stack_uses1_Main_9093 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());

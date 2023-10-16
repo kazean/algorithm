@@ -1,11 +1,12 @@
 package baekjoon.basic1.datastructor;
 /*
+단어 뒤집기2 - 17413
 baekjoon online judge
  */
 import java.io.*;
 import java.util.Stack;
 
-public class Main_17413 {
+public class Stack_uses3_Main_17413 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

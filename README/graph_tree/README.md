@@ -219,7 +219,7 @@ public class Kruskal {
 ```
 
 ### 프림(Prim) Algorithm - algorithm.graphtree.greedy.Prims
-최소 신장 트리 (Minimum Spanning Tree) 구현에 상요되는 알고리즘으로 시작 정점에서 정점을 추가해가며 단계적으로 트리를 확장하는 기법이다
+최소 신장 트리 (Minimum Spanning Tree) 구현에 사용되는 알고리즘으로 시작 정점에서 정점을 추가해가며 단계적으로 트리를 확장하는 기법이다
 - [참고](https://velog.io/@suk13574/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98Java-%ED%94%84%EB%A6%BCPrim-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
 - 프로그래머스[https://school.programmers.co.kr/learn/courses/30/lessons/42861]
 
@@ -228,7 +228,7 @@ public class Kruskal {
 > 매 순간 최선의 조건을 선택하는 `그리디` 알고리즘 바탕  
 정점기준으로 가중치가 가장 적은 간선 선택 > 반복 [우선 순위 큐]
 1) 시작 단계는 시작 노드만이 MST 집합에 속한다.
-2) 트리 집합에 속한 정점들 중 가장 낮은 가중치의 간선과 연결된 정ㅈ머에 대해 간선과 정점을 MST 트리 집합에 넣는다. (사이클을 막기 위해 연결된 정점이 이미 트리가 속한다면 다음 순서를 넣는다)
+2) 트리 집합에 속한 정점들 중 가장 낮은 가중치의 간선과 연결된 정점에 대해 간선과 정점을 MST 트리 집합에 넣는다. (사이클을 막기 위해 연결된 정점이 이미 트리가 속한다면 다음 순서를 넣는다)
 3) 2번 과정을 MST 집합의 원소 개수가 그래프의 정점의 개수가 될 때까지 반복한다.
 - 시간 복잡도
 > 배열로 구현시 O(n^2), 최소 힙으로 구현할 경우 시간 복잡도 O(ElogN)
