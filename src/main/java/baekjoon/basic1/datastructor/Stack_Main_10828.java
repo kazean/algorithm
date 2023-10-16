@@ -42,7 +42,7 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.util.Stack;
 
-public class Main_10828 {
+public class Stack_Main_10828 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
