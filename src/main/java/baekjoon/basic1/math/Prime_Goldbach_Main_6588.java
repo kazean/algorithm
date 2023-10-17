@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main_5688 {
+public class Prime_Goldbach_Main_6588 {
 
     static boolean[] prime = new boolean[1000001];
     public static void main(String[] args) throws IOException {

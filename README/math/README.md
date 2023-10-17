@@ -1,24 +1,10 @@
-# 수학
-## 소수 - 에라토스테네스의 체 - (baekjoon.basic1.math.Main_1929)
-- [참고](https://firework-ham.tistory.com/8)
-- 매커니즘
-> 소수가 되는 수의 배수를 지우면 남은 건은 소수만 된다
-```java
-public static void prime() {
-    prime[0] = prime[1] = true;
+# 수학 1
+------------------------------------------------------------------------------------------
+## [나머지](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Divide_Main_10430.java)
 
-    for (int i = 0; i <= Math.sqrt(10001); i++) {
-        if (!prime[i]) {
-            for (int j = i * i; j <= 10000; j += i) {
-                prime[j] = true;
-            }
-        }
-    }
-}
-```
 
----------------
-## 최대공약수(GCD, Greatest Common Divisor), 최소공배수(LCM) (baekjoon.basic1.math.Main_2609_99)
+------------------------------------------------------------------------------------------
+## [최대공약수(GCD, Greatest Common Divisor), 최소공배수(LCM) - 2609](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/GcdLcd_Main_2609_99.java)
 ### 최대공약수 - 유클리트 호제법
 두 자연수가 공통으로 갖는 약수들 중에서 가증 큰 값 두 자연수들의 배수들 중에서 공통된 가장 작은수
 - [참고](https://st-lab.tistory.com/154)
@@ -45,7 +31,7 @@ int gcd(int a, int b) {
 	return gcd(b, a % b);
 }
 ```
-### 최소 공약수  
+### 최소 공약수
 두 자연수들의 배수들 중에서 공통된 가장 작은 수를 말한다.
 ```java
 // 최소공배수 : Least Common mulitple
@@ -55,17 +41,38 @@ int lcm(int a, int b) {
 ```
 > 최소공배수 = 두 자연수의 곱 / 최대공약수  
 a * b / gcd(a, b)
----------------
 
 
-## n*n 정사각형 개수
-- [참고](https://blog.naver.com/neutrinoant/221274874006)
+------------------------------------------------------------------------------------------
+## [소수 - 에라토스테네스의 체 - 1929](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Prime_Main_1929.java)
+- [참고](https://firework-ham.tistory.com/8)
+- 매커니즘
+> 소수가 되는 수의 배수를 지우면 남은 건은 소수만 된다
 ```java
-int answer = (n-1)n*n(n+1)/12;
-```
----------------
+public static void prime() {
+    prime[0] = prime[1] = true;
 
-## 팩토리얼 끝 자리 0의 수 ((baekjoon.basic1.math.Main_2004))
+    for (int i = 0; i <= Math.sqrt(10001); i++) {
+        if (!prime[i]) {
+            for (int j = i * i; j <= 10000; j += i) {
+                prime[j] = true;
+            }
+        }
+    }
+}
+```
+
+
+------------------------------------------------------------------------------------------
+## [골드바흐의 추측 - 에라토스테네스의 체 - 6588](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Prime_Goldbach_Main_6588.java)
+
+
+------------------------------------------------------------------------------------------
+## [팩토리얼 - 10872](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Factorial_Main_10872.java)
+
+
+------------------------------------------------------------------------------------------
+## [조합 0의 개수 - 팩토리얼 끝 자리 0의 수 - 2004](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/ZeroCount_Main_2004.java)
 - [참고](https://st-lab.tistory.com/165)
 - 매커니즘
 > 끝자리 0은 2, 5가 곱해져있을때다, 팩토리얼을 보면 5의 배수마다 5의 제곱의 지수 값이 1개씩 증가, 25는 카운트가 2개 증가
@@ -89,8 +96,20 @@ public static int power2(int num) {
     return count;
 }
 ```
+> Math.min(power2(), power5())
 
+
+------------------------------------------------------------------------------------------
+## n*n 정사각형 개수
+- [참고](https://blog.naver.com/neutrinoant/221274874006)
+```java
+int answer = (n-1)n*n(n+1)/12;
+```
+------------------------------------------------------------------------------------------
+# 수학 1(연습)
+------------------------------------------------------------------------------------------
 ## 진수 변환
+- [참고](https://hianna.tistory.com/527)
 - 매커니즘
 > 10진수를 제외한 나머지 진수는 String으로 받아야 한다. -> int는 전부 10진수로 인식  
 2진수, 8진수, 16진수는 아래와 같이 Binary, Octal, Hex함수가 존재한다.  
@@ -124,7 +143,7 @@ public class Solution {
         String a = "110011";
 
         System.out.println("2진수 -> 10진수");
-        System.out.println(Integer.parseInt(a,3));
+        System.out.println(Integer.parseInt(a,2));
 
         System.out.println("3진수 -> 10진수");
         System.out.println(Integer.parseInt(a,3));
@@ -139,3 +158,10 @@ public class Solution {
 ```
 > Integer.toString(int num, int radix) num(10) > radix
 > Integer.parseInt(int num, int radix) radix > num(10)
+
+
+------------------------------------------------------------------------------------------
+## [2진수 8진수 = 1373](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Binary2n8_Main_1373.java)
+- [참고](https://hianna.tistory.com/527)
+
+

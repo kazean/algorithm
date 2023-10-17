@@ -1,6 +1,7 @@
 package baekjoon.basic1.datastructor;
 
 /*
+요세ㅐ푸스 문제
 7 3
 > <3, 6, 2, 7, 5, 1, 4>
  */
@@ -8,7 +9,7 @@ import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main_1158 {
+public class Queue_uses_Main_1158 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
