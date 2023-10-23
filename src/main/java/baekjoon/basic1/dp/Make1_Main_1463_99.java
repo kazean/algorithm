@@ -6,8 +6,7 @@ package baekjoon.basic1.dp;
 */
 import java.util.Scanner;
 
-public class Main_1463_99 {
-
+public class Make1_Main_1463_99 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int size = sc.nextInt();

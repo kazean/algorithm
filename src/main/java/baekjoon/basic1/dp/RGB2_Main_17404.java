@@ -11,7 +11,7 @@ n은 n-1과 1번째에 색과 달라야한다.
 */
 import java.io.*;
 
-public class Main_17404 {
+public class RGB2_Main_17404 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());

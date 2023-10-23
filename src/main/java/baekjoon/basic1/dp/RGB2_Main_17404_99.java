@@ -13,7 +13,7 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 
-public class Main_17404_99 {
+public class RGB2_Main_17404_99 {
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     // 최대 비용 값
