@@ -121,14 +121,14 @@ public static void main(String[] args) throws NumberFormatException, IOException
     int r, g, b;
     
     for(int i=0; i<n; i++){
-    String tmpLine = br.readLine();
-    String[] tmpArrLine = tmpLine.split(" ");
-    r = Integer.parseInt(tmpArrLine[0]);
-    g = Integer.parseInt(tmpArrLine[1]);
-    b = Integer.parseInt(tmpArrLine[2]);
-    max[i+1][0] = Math.min(max[i][1], max[i][2]) + r;
-    max[i+1][1] = Math.min(max[i][0], max[i][2]) + g;
-    max[i+1][2] = Math.min(max[i][0], max[i][1]) + b;
+        String tmpLine = br.readLine();
+        String[] tmpArrLine = tmpLine.split(" ");
+        r = Integer.parseInt(tmpArrLine[0]);
+        g = Integer.parseInt(tmpArrLine[1]);
+        b = Integer.parseInt(tmpArrLine[2]);
+        max[i+1][0] = Math.min(max[i][1], max[i][2]) + r;
+        max[i+1][1] = Math.min(max[i][0], max[i][2]) + g;
+        max[i+1][2] = Math.min(max[i][0], max[i][1]) + b;
     }
     
     System.out.println(Math.min(Math.min(max[n][0], max[n][1]), max[n][2]));

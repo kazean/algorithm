@@ -15,6 +15,8 @@ Queue<E> q = new LinkedList<>();
 ArraysDeque<T> deque = new ArraysDeque<>();
 Deque<T> dq = new LinkedList<>();
 ```
+
+
 ---------------------------------------------------------------------------------------
 ## [수학](https://github.com/kazean/algorithm/tree/main/README/math)
 - GCD LCD
@@ -116,3 +118,21 @@ System.out.println(Integer.parseInt(a,8));
 System.out.println("16진수 -> 10진수");;
 System.out.println(Integer.parseInt(a,16));
 ```
+
+
+---------------------------------------------------------------------------------------
+## [dp](https://github.com/kazean/algorithm/tree/main/README/dp)
+- 1로 만들기
+> Math.min(dp[n/3], dp[n/2], dp[n-1])
+- 이친수
+> dp[i] = dp[i - 1] + dp[i - 2];
+- 합분해
+> dp[i][j] = (dp[i][j - 1] + dp[i - 1][j]) % mod;
+- RGB 거리
+> max[i+1][0] = Math.min(max[i][1], max[i][2]) + r;  
+> max[i+1][1] = Math.min(max[i][0], max[i][2]) + g;  
+> max[i+1][2] = Math.min(max[i][0], max[i][1]) + b;
+
+
+---------------------------------------------------------------------------------------
+## [브루트 포스 brute force](https://github.com/kazean/algorithm/tree/main/README/brute_force)
