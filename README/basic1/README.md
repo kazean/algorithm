@@ -1,5 +1,5 @@
 # 알고리즘 기초 1/2
-- [BaekJoon - 알고리즘 기초](https://code.plus/course/41)
+- [BaekJoon - 알고리즘 기초(1/2)](https://code.plus/course/41)
 - [1. 자료구조](#1-자료구조)
 - [2. 수학](#2-수학)
 - [3. DP](#3-dp)
