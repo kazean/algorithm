@@ -55,7 +55,43 @@ Deque<T> dq = new LinkedList<>();
 ```
 ------------------------------------------------------------------------------------------
 ### [스택 - 에디터 - 1406](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses5_Main_1406.java)
-- ![문제](./../images/matter_editor.png)
+![문제](./../images/matter_editor.png)
+> - ListIterator or Stack 이용 
+> > - [참고](https://minhamina.tistory.com/18)
+```java
+    LinkedList<Character> list = new LinkedList<>();
+    for (int i = 0; i < initStr.length(); i++) {
+        list.add(initStr.charAt(i));
+    }
+
+    ListIterator<Character> iter = list.listIterator();
+    while (iter.hasNext()) {
+        iter.next();
+    }
+
+    int idx = list.size();
+
+    int cmdCnt = Integer.parseInt(br.readLine());
+
+    for (int i = 0; i < cmdCnt; i++) {
+        String s = br.readLine();
+        char c = s.charAt(0);
+        if ('P' == c) {
+            char t = s.charAt(2);
+            iter.add(t);
+        } else if ('L' == c) {
+            if(iter.hasPrevious()) iter.previous();
+        } else if ('D' == c) {
+            if(iter.hasNext()) iter.next();
+        } else if ('B' == c) {
+            if (iter.hasPrevious()) {
+                iter.previous();
+                iter.remove();
+            }
+        }
+    }
+```
+------------------------------------------------------------------------------------------
 ### [스택 - 단어뒤집기 - 9093](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses1_Main_9093.java)
 ### [스택 - 괄호 - 9012](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses2_Main_9012.java)
 ### [큐 - 요세푸스 문제 - 1158](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Queue_uses_Main_1158.java)
