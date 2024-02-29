@@ -270,6 +270,13 @@ public static void main(String[] args) {
 ------------------------------------------------------------------------------------------
 ### [2친수](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/BinaryNumber_Main_2193.java)
 - 매커니즘
+```text
+0과 1로만 이루어진 수를 이진수라 한다. 
+이러한 이진수 중 특별한 성질을 갖는 것들이 있는데, 이들을 이친수(pinary number)라 한다. 이친수는 다음의 성질을 만족한다.
+
+1. 이친수는 0으로 시작하지 않는다.
+2. 이친수에서는 1이 두 번 연속으로 나타나지 않는다. 즉, 11을 부분 문자열로 갖지 않는다.
+```
 > 점화식
 ```java
 public static void main(String[] args) throws IOException {
@@ -289,6 +296,10 @@ public static void main(String[] args) throws IOException {
 ------------------------------------------------------------------------------------------
 ### [합분해](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SumUp_Main_2225.java)
 - 매커니즘
+```text
+0부터 N까지의 정수 K개를 더해서 그 합이 N이 되는 경우의 수를 구하는 프로그램을 작성하시오.
+덧셈의 순서가 바뀐 경우는 다른 경우로 센다(1+2와 2+1은 서로 다른 경우). 또한 한 개의 수를 여러 번 쓸 수도 있다.
+```
 > 점화식 K-1개 수를 합해 만든 값 + 0 ~ N 까지의 정수를 더한다면 K-1개의 수로 만든 합에 1개의 정수를 더한 것이므로  
 > K개의 수를 사용해 만든 어떤합이 될것이다.
 - [참고](https://nahwasa.com/entry/%EB%B0%B1%EC%A4%80-2225-%EC%9E%90%EB%B0%94-%ED%95%A9%EB%B6%84%ED%95%B4-BOJ-2225-JAVA)
