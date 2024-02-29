@@ -55,21 +55,7 @@ Deque<T> dq = new LinkedList<>();
 ```
 ------------------------------------------------------------------------------------------
 ### [스택 - 에디터 - 1406](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses5_Main_1406.java)
-- 시간초과
-> ListIterator
-```java
-public interface ListIterator<E> extends Iterator<E> {
-    boolean hasNext();
-    E next();
-    boolean hasPrevious();
-    E previous();
-    int nextIndex();
-    int previousIndex();
-    void remove();
-    void set(E e);
-    void add(E e);
-}
-```
+- ![문제](./../images/matter_editor.png)
 ### [스택 - 단어뒤집기 - 9093](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses1_Main_9093.java)
 ### [스택 - 괄호 - 9012](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses2_Main_9012.java)
 ### [큐 - 요세푸스 문제 - 1158](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Queue_uses_Main_1158.java)
@@ -320,8 +306,9 @@ for (int i = 1; i <= N; i++) {
 ------------------------------------------------------------------------------------------
 ## DP1(연습)
 ------------------------------------------------------------------------------------------
-### [1, 2, 3 더햐기 3](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Plus123_Main_15988.java)
+### [1, 2, 3 더하기 3](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Plus123_Main_15988.java)
 - 매커니즘
+> - 정수를 1,2,3 합으로 나타내기
 > 1, 2, 3 일때 경우의 수 dp[i-3] + dp[i-2] + dp[i-1]
 ```java
 public class Plus123_Main_15988 {
@@ -351,6 +338,16 @@ public class Plus123_Main_15988 {
 ------------------------------------------------------------------------------------------
 ### [rgb 거리](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/RGB_Main_1149_99.java)
 - 매커니즘
+```text
+문제
+RGB거리에는 집이 N개 있다. 거리는 선분으로 나타낼 수 있고, 1번 집부터 N번 집이 순서대로 있다.
+
+집은 빨강, 초록, 파랑 중 하나의 색으로 칠해야 한다. 각각의 집을 빨강, 초록, 파랑으로 칠하는 비용이 주어졌을 때, 아래 규칙을 만족하면서 모든 집을 칠하는 비용의 최솟값을 구해보자.
+
+1번 집의 색은 2번 집의 색과 같지 않아야 한다.
+N번 집의 색은 N-1번 집의 색과 같지 않아야 한다.
+i(2 ≤ i ≤ N-1)번 집의 색은 i-1번, i+1번 집의 색과 같지 않아야 한다.
+```
 > 문제를 보고 점진적으로 조건에 따른 현재 max 값을 dp에 저장하기
 > > 17404 문제 경우, 각 결과 반복하여 dp 구하기
 > > > 코드를 변경하기보다 문제에서 유추 필요
