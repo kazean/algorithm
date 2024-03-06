@@ -52,6 +52,9 @@ public class LinkedList<E>
 ```java
 ArraysDeque<T> deque = new ArraysDeque<>();
 Deque<T> dq = new LinkedList<>();
+
+dq.addFirst(E), addLast(E), E poll~(), E peek~()
+
 ```
 ------------------------------------------------------------------------------------------
 ### [스택 - 에디터 - 1406](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses5_Main_1406.java)
@@ -93,8 +96,17 @@ Deque<T> dq = new LinkedList<>();
 ```
 ------------------------------------------------------------------------------------------
 ### [스택 - 단어뒤집기 - 9093](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses1_Main_9093.java)
+입력된 문자열 역순 출력
+> !보통 Stack Uses 시간초과...
+> > Stringtokenizer or Stream + StringBuffer or BufferedWriter 활용
+------------------------------------------------------------------------------------------
 ### [스택 - 괄호 - 9012](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses2_Main_9012.java)
-### [큐 - 요세푸스 문제 - 1158](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Queue_uses_Main_1158.java)
+올바른 괄호인지
+> Stack Uses
+------------------------------------------------------------------------------------------
+### [큐 - 요세푸스(조세퍼스) 문제 - 1158](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Queue_uses_Main_1158.java)
+원에 인원 N명 K번째 사람 추출
+> Queue poll/add() 반복
 ------------------------------------------------------------------------------------------
 ## 자료구조 1 (연습)
 ### [스택 - 단어뒤집기2 - 17413](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses3_Main_17413.java)
