@@ -98,7 +98,7 @@ dq.addFirst(E), addLast(E), E poll~(), E peek~()
 ### [스택 - 단어뒤집기 - 9093](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses1_Main_9093.java)
 입력된 문자열 역순 출력
 > !보통 Stack Uses 시간초과...
-> > Stringtokenizer or Stream + StringBuffer or BufferedWriter 활용
+> > StringTokenizer or Stream + StringBuffer or BufferedWriter 활용
 ------------------------------------------------------------------------------------------
 ### [스택 - 괄호 - 9012](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses2_Main_9012.java)
 올바른 괄호인지
@@ -108,9 +108,28 @@ dq.addFirst(E), addLast(E), E poll~(), E peek~()
 원에 인원 N명 K번째 사람 추출
 > Queue poll/add() 반복
 ------------------------------------------------------------------------------------------
+### [덱 - 덱 - 10866](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Deque_Main_10866.java)
+> ArrayDequeue
+------------------------------------------------------------------------------------------
+
+
 ## 자료구조 1 (연습)
-### [스택 - 단어뒤집기2 - 17413](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses3_Main_17413.java)
-### [스택 - 쇠막대기 - 10799](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses4_Main_10799.java)
+------------------------------------------------------------------------------------------
+### [스택 - 단어뒤집기2 - 17413](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_17413.java)
+단어 뒤집기, 태그(<, >)는 그대로 출력
+> StringBuffer, Stack Uses
+------------------------------------------------------------------------------------------
+### [스택 - 쇠막대기 - 10799](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_10799)
+쇠막대기와 레이저 배치를 나타내는 괄호표현이 공백 없이 주어진다 > 잘려진 조각의 총 개수 구하기
+> Stack Uses: 괄호 여닫는 것의 개수
+------------------------------------------------------------------------------------------
+### [스탠 - 오큰수 - 17298](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_17298_99)
+- 오큰수
+> 자신보다 오른쪽에 있는 수 중에 첫번째로 큰 수
+> > 일반적인 구현으로는 `시간초과`
+> > > Stack을 활용해서 기존 수열 점진적으로 변화
+
+
 ------------------------------------------------------------------------------------------
 ## 자료구조 1 (참고)
 

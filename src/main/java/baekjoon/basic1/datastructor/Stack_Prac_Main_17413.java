@@ -6,7 +6,7 @@ baekjoon online judge
 import java.io.*;
 import java.util.Stack;
 
-public class Stack_uses3_Main_17413 {
+public class Stack_Prac_Main_17413 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
