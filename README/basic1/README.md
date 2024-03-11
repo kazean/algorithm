@@ -119,11 +119,11 @@ dq.addFirst(E), addLast(E), E poll~(), E peek~()
 단어 뒤집기, 태그(<, >)는 그대로 출력
 > StringBuffer, Stack Uses
 ------------------------------------------------------------------------------------------
-### [스택 - 쇠막대기 - 10799](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_10799)
+### [스택 - 쇠막대기 - 10799](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_10799.java)
 쇠막대기와 레이저 배치를 나타내는 괄호표현이 공백 없이 주어진다 > 잘려진 조각의 총 개수 구하기
 > Stack Uses: 괄호 여닫는 것의 개수
 ------------------------------------------------------------------------------------------
-### [스탠 - 오큰수 - 17298](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_17298_99)
+### [스탠 - 오큰수 - 17298](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_17298_99.java)
 - 오큰수
 > 자신보다 오른쪽에 있는 수 중에 첫번째로 큰 수
 > > 일반적인 구현으로는 `시간초과`
