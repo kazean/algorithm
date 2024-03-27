@@ -163,12 +163,61 @@ while (!stack.isEmpty()) {
 ## 자료구조 1 (참고)
 ------------------------------------------------------------------------------------------
 ### [스택 - 후위 표기식2 - 1935](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Ref_Main_1935.java)
-- 후위표기식
-> Stack을 이용해서 연산자 나올대마다 pop()하여 계산하기
+- 후위표기식 계산하기
+> Stack 을 이용해서 연산자 나올대마다 pop()하여 계산하기
 > > String.format("%.2f". double)
 
 ------------------------------------------------------------------------------------------
-### [스택 - 후위 표기식 - 1918]()
+### [스택 - 후위 표기식 - 1918](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Ref_Main_1918_99.java)
+- !후위 표기식 만들기 (답안 확인)
+> 연산식 우선순위에 따라서 결과 Push
+> > 숫자는 append, 결과는 Stack 에서 풀기
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String exp = br.readLine();
+    
+    Stack<Character> stack = new Stack<>();
+    StringBuffer sb = new StringBuffer();
+    for (int i = 0; i < exp.length(); i++) {
+        char tmp = exp.charAt(i);
+
+        switch (tmp) {
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+                // 이전 연산자가 우선인 경우, 먼저 stack 에 있는 경우를 먼저 append 후 새로운 연산자를 push
+                while (!stack.isEmpty() && priority(stack.peek()) >= priority(tmp)) {
+                    sb.append(stack.pop());
+                }
+                stack.push(tmp);
+                break;
+            case '(':
+                // 괄호의 경우 stack 에 push
+                stack.push(tmp);
+                break;
+            case ')':
+                // 괄호가 끝나는 경우 stack 에 있는 경우를 append
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    sb.append(stack.pop());
+                }
+                stack.pop();
+                break;
+            default:
+                sb.append(tmp);
+        }
+    }
+
+    while (!stack.isEmpty()) {
+        sb.append(stack.pop());
+    }
+    System.out.println(sb.toString());
+
+}
+```
+> 알고리즘 구조를 어떻게 진행해야할지 더 고민하기
+> > 처음든 생각 괄호 기준으로 만들기 > but 연산자나 우선순위를 생각하여 식을 stack 으로 표현하기
 
 
 ------------------------------------------------------------------------------------------

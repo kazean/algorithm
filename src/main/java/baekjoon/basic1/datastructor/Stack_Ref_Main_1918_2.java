@@ -1,5 +1,7 @@
 package baekjoon.basic1.datastructor;
 /**
+ * 실패
+ *
  * 후위표기식
  * https://www.acmicpc.net/problem/1918
  * <p>
@@ -8,8 +10,11 @@ package baekjoon.basic1.datastructor;
  * 출력: 후위표기식
  * <p>
  * input:
- * A+B*C
- * A+B*C-D/E
+ * A+B*C > ABC*+
+ * A+B*C-D/E > ABC*+DE/-
+ * A*B*C > AB*C*
+ * (((A-B)+C)+D) > AB-C+D+
+ * (((A*B)+C)+D) > AB*C+D+
  */
 
 import java.io.BufferedReader;
@@ -43,8 +48,23 @@ public class Stack_Ref_Main_1918_2 {
             if (tmp == '*' || tmp == '/') {
                 String preNum = expDeque.pollLast();
                 char nextTmp = s.charAt(i + 1);
-
+                Stack<String> tmpStack = new Stack<>();
+                if (")".equals(preNum)) {
+                    boolean flag = true;
+                    while (flag) {
+                        String tmpPre = expDeque.pollLast();
+                        if (tmpPre != null && !"(".equals(tmpPre)) {
+                            tmpStack.push(tmpPre);
+                        } else {
+                            tmpStack.push(tmpPre);
+                            flag = false;
+                        }
+                    }
+                }
                 expDeque.addLast("(");
+                while (!tmpStack.isEmpty()) {
+                    expDeque.addLast(tmpStack.pop());
+                }
                 expDeque.addLast(preNum);
                 expDeque.addLast(String.valueOf(tmp));
                 if (nextTmp == '(') {
@@ -55,8 +75,16 @@ public class Stack_Ref_Main_1918_2 {
                 expDeque.addLast(")");
             } else {
                 expDeque.addLast(String.valueOf(tmp));
+                int bracketCnt = 0;
+
+                if (tmp == '(') {
+                    bracketCnt++;
+                }
                 if (tmp == ')') {
-                    return i;
+                    bracketCnt--;
+                    if (bracketCnt == 0) {
+                        return i;
+                    }
                 }
             }
         }
@@ -89,6 +117,4 @@ public class Stack_Ref_Main_1918_2 {
         }
         return "";
     }
-
-
 }

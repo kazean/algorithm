@@ -1,5 +1,7 @@
 package baekjoon.basic1.datastructor;
 /**
+ * 실패
+ *
  * 후위표기식
  * https://www.acmicpc.net/problem/1918
  * <p>
