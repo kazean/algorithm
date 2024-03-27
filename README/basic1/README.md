@@ -25,6 +25,7 @@ class Stack<E> extends Vector<E> {
     public synchronized int search(Object o){}
 }
 ```
+
 ------------------------------------------------------------------------------------------
 ### [큐 - 10845](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Queue_Main_10845.java)
 ```java
@@ -47,6 +48,7 @@ public class LinkedList<E>
 }
 ```
 > LinkedList 로 구현
+
 ------------------------------------------------------------------------------------------
 ### [덱/데크 - 10845](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Deque_Main_10866.java)
 ```java
@@ -56,6 +58,7 @@ Deque<T> dq = new LinkedList<>();
 dq.addFirst(E), addLast(E), E poll~(), E peek~()
 
 ```
+
 ------------------------------------------------------------------------------------------
 ### [스택 - 에디터 - 1406](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses5_Main_1406.java)
 ![문제](./../images/matter_editor.png)
@@ -94,22 +97,27 @@ dq.addFirst(E), addLast(E), E poll~(), E peek~()
         }
     }
 ```
+
 ------------------------------------------------------------------------------------------
 ### [스택 - 단어뒤집기 - 9093](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses1_Main_9093.java)
 입력된 문자열 역순 출력
 > !보통 Stack Uses 시간초과...
 > > StringTokenizer or Stream + StringBuffer or BufferedWriter 활용
+
 ------------------------------------------------------------------------------------------
 ### [스택 - 괄호 - 9012](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses2_Main_9012.java)
 올바른 괄호인지
 > Stack Uses
+
 ------------------------------------------------------------------------------------------
 ### [큐 - 요세푸스(조세퍼스) 문제 - 1158](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Queue_uses_Main_1158.java)
 원에 인원 N명 K번째 사람 추출
 > Queue poll/add() 반복
+
 ------------------------------------------------------------------------------------------
 ### [덱 - 덱 - 10866](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Deque_Main_10866.java)
 > ArrayDequeue
+
 ------------------------------------------------------------------------------------------
 
 
@@ -118,10 +126,12 @@ dq.addFirst(E), addLast(E), E poll~(), E peek~()
 ### [스택 - 단어뒤집기2 - 17413](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_17413.java)
 단어 뒤집기, 태그(<, >)는 그대로 출력
 > StringBuffer, Stack Uses
+
 ------------------------------------------------------------------------------------------
 ### [스택 - 쇠막대기 - 10799](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_10799.java)
 쇠막대기와 레이저 배치를 나타내는 괄호표현이 공백 없이 주어진다 > 잘려진 조각의 총 개수 구하기
 > Stack Uses: 괄호 여닫는 것의 개수
+
 ------------------------------------------------------------------------------------------
 ### [스택 - 오큰수 - 17298](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_17298_99.java)
 - 오큰수
@@ -141,6 +151,7 @@ while (!stack.isEmpty()) {
 }
 ```
 > Stack: index, 기존배열 > 결과값 저장
+
 ------------------------------------------------------------------------------------------
 ### [스택 - 오등큰수 - 17299](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_17299.java)
 - 오등큰수
@@ -151,9 +162,15 @@ while (!stack.isEmpty()) {
 ------------------------------------------------------------------------------------------
 ## 자료구조 1 (참고)
 ------------------------------------------------------------------------------------------
-### [스택 - 후위 표기식2 - 1935]()
+### [스택 - 후위 표기식2 - 1935](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Ref_Main_1935.java)
+- 후위표기식
+> Stack을 이용해서 연산자 나올대마다 pop()하여 계산하기
+> > String.format("%.2f". double)
+
 ------------------------------------------------------------------------------------------
 ### [스택 - 후위 표기식 - 1918]()
+
+
 ------------------------------------------------------------------------------------------
 ### [문자열/구현 - 알파벳 개수 - 10808]()
 ------------------------------------------------------------------------------------------
