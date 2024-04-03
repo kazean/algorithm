@@ -221,9 +221,67 @@ public static void main(String[] args) throws IOException {
 
 
 ------------------------------------------------------------------------------------------
-### [문자열/구현 - 알파벳 개수 - 10808]()
+### [문자열/구현 - 알파벳 개수 - 10808](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/StringNImpl_Ref_Main_10808.java)
+- 알파벳 개수
+> - 입력: 소문자 문자열
+> - 출력: 알파벳 개수 출력
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String inputs = br.readLine();
+    int[] result = new int[26];
+    // a: 97, z: 122
+
+    for (int i = 0; i < inputs.length(); i++) {
+        char tmp = inputs.charAt(i);
+        int index = tmp - 97;
+        result[index] += 1;
+    }
+
+    StringBuffer sb = new StringBuffer();
+    for (int i = 0; i < result.length; i++) {
+        if (i == result.length - 1) {
+            sb.append(result[i]);
+        } else {
+            sb.append(result[i]);
+            sb.append(" ");
+        }
+    }
+    System.out.println(sb.toString());
+}
+```
+
+
 ------------------------------------------------------------------------------------------
-### [문자열/구현 - 알파벳 찾기 - 10809]()
+### [문자열/구현 - 알파벳 찾기 - 10809](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/StringNImpl_Ref_Main_10809_99.java)
+- 알파벳 찾기
+> - 입력: 소문자 문자열
+> - 출력: a~z index, defaultIfEmpty: -1
+```java
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    char arr[] = br.readLine().toCharArray();
+    int num[] = new int[26];
+    for (int i = 0; i < 26; i++) {
+        num[i] = -1;
+    }
+
+    for (int i = 0; i < arr.length; i++) {
+        int loc = arr[i] - 97;
+
+
+        if (num[loc] == -1) {
+            num[loc] = i;
+            //System.out.println(arr[i] + " = "+loc);
+
+        }
+    }
+    for (int i = 0; i <  26; i++) {
+        System.out.print(num[i] + " ");
+    }
+}
+```
+
 ------------------------------------------------------------------------------------------
 ### [문자열/구현 - 문자열 분석 - 10820]()
 ------------------------------------------------------------------------------------------
