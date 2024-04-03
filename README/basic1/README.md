@@ -225,6 +225,7 @@ public static void main(String[] args) throws IOException {
 - 알파벳 개수
 > - 입력: 소문자 문자열
 > - 출력: 알파벳 개수 출력
+> > 해당 문자열에 해당하는 배열 count++
 ```java
 public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -250,6 +251,7 @@ public static void main(String[] args) throws IOException {
     System.out.println(sb.toString());
 }
 ```
+> - 속도 index를 한번에 계산 result[inputs.charAt(i) - 97]
 
 
 ------------------------------------------------------------------------------------------
@@ -257,6 +259,7 @@ public static void main(String[] args) throws IOException {
 - 알파벳 찾기
 > - 입력: 소문자 문자열
 > - 출력: a~z index, defaultIfEmpty: -1
+> > 전체를 -1로 둔 상태에서 입력값 forEach 해당 index 입력(-1일 경우만)
 ```java
 public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
