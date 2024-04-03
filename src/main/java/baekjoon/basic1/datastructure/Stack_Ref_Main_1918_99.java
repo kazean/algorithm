@@ -1,4 +1,4 @@
-package baekjoon.basic1.datastructor;
+package baekjoon.basic1.datastructure;
 /**
  * 후위표기식
  * https://www.acmicpc.net/problem/1918

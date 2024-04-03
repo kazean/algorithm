@@ -1,4 +1,4 @@
-package baekjoon.basic1.datastructor;
+package baekjoon.basic1.datastructure;
 /**
  * 오큰수
  * Stack copy 시간초과
@@ -8,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Stack_Prac_Main_17298_99 {
     public static void main(String[] args) throws IOException {

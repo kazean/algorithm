@@ -1,4 +1,4 @@
-package baekjoon.basic1.datastructor;
+package baekjoon.basic1.datastructure;
 /*
 스택 - 에디터
  */

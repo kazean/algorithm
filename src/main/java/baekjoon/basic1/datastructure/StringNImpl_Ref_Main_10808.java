@@ -1,4 +1,4 @@
-package baekjoon.basic1.datastructor;
+package baekjoon.basic1.datastructure;
 /**
  * 알파벳개수
  * https://www.acmicpc.net/problem/10808

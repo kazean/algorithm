@@ -1,4 +1,4 @@
-package baekjoon.basic1.datastructor;
+package baekjoon.basic1.datastructure;
 /**
  * 오큰수
  * Stack copy 시간초과

@@ -1,4 +1,4 @@
-package baekjoon.basic1.datastructor;
+package baekjoon.basic1.datastructure;
 /*
 단어 뒤집기2 - 17413
 baekjoon online judge

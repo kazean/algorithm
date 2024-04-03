@@ -1,4 +1,4 @@
-package baekjoon.basic1.datastructor;
+package baekjoon.basic1.datastructure;
 /**
  * 알파벳 찾기
  * 입력: 단어, 소문자, 길이 < 100
@@ -8,9 +8,7 @@ package baekjoon.basic1.datastructor;
  * out: 1 0 -1 -1 2 -1 -1 -1 -1 4 3 -1 -1 7 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
  */
 
-import java.util.*;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 public class StringNImpl_Ref_Main_10809_99 {

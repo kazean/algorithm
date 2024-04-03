@@ -1,4 +1,4 @@
-package baekjoon.basic1.datastructor;
+package baekjoon.basic1.datastructure;
 /**
  * 알파벳 찾기
  * 입력: 단어, 소문자, 길이 < 100
