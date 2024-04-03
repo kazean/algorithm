@@ -10,7 +10,7 @@
 ------------------------------------------------------------------------------------------
 ## 1. 자료구조
 ------------------------------------------------------------------------------------------
-### [스택 - 10828](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Main_10828.java)
+### [스택 - 10828](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_Main_10828.java)
 ```java
 Stack<Integer> stack = new Stack<>();
 ```
@@ -27,7 +27,7 @@ class Stack<E> extends Vector<E> {
 ```
 
 ------------------------------------------------------------------------------------------
-### [큐 - 10845](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Queue_Main_10845.java)
+### [큐 - 10845](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Queue_Main_10845.java)
 ```java
 LinkedList<Integer> q = new LinkedList<>();
 ```
@@ -50,7 +50,7 @@ public class LinkedList<E>
 > LinkedList 로 구현
 
 ------------------------------------------------------------------------------------------
-### [덱/데크 - 10845](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Deque_Main_10866.java)
+### [덱/데크 - 10845](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Deque_Main_10866.java)
 ```java
 ArraysDeque<T> deque = new ArraysDeque<>();
 Deque<T> dq = new LinkedList<>();
@@ -60,7 +60,7 @@ dq.addFirst(E), addLast(E), E poll~(), E peek~()
 ```
 
 ------------------------------------------------------------------------------------------
-### [스택 - 에디터 - 1406](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses5_Main_1406.java)
+### [스택 - 에디터 - 1406](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_uses5_Main_1406.java)
 ![문제](./../images/matter_editor.png)
 > - ListIterator or Stack 이용 
 > > - [참고](https://minhamina.tistory.com/18)
@@ -99,23 +99,23 @@ dq.addFirst(E), addLast(E), E poll~(), E peek~()
 ```
 
 ------------------------------------------------------------------------------------------
-### [스택 - 단어뒤집기 - 9093](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses1_Main_9093.java)
+### [스택 - 단어뒤집기 - 9093](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_uses1_Main_9093.java)
 입력된 문자열 역순 출력
 > !보통 Stack Uses 시간초과...
 > > StringTokenizer or Stream + StringBuffer or BufferedWriter 활용
 
 ------------------------------------------------------------------------------------------
-### [스택 - 괄호 - 9012](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_uses2_Main_9012.java)
+### [스택 - 괄호 - 9012](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_uses2_Main_9012.java)
 올바른 괄호인지
 > Stack Uses
 
 ------------------------------------------------------------------------------------------
-### [큐 - 요세푸스(조세퍼스) 문제 - 1158](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Queue_uses_Main_1158.java)
+### [큐 - 요세푸스(조세퍼스) 문제 - 1158](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Queue_uses_Main_1158.java)
 원에 인원 N명 K번째 사람 추출
 > Queue poll/add() 반복
 
 ------------------------------------------------------------------------------------------
-### [덱 - 덱 - 10866](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Deque_Main_10866.java)
+### [덱 - 덱 - 10866](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Deque_Main_10866.java)
 > ArrayDequeue
 
 ------------------------------------------------------------------------------------------
@@ -123,17 +123,17 @@ dq.addFirst(E), addLast(E), E poll~(), E peek~()
 
 ## 자료구조 1 (연습)
 ------------------------------------------------------------------------------------------
-### [스택 - 단어뒤집기2 - 17413](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_17413.java)
+### [스택 - 단어뒤집기2 - 17413](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_Prac_Main_17413.java)
 단어 뒤집기, 태그(<, >)는 그대로 출력
 > StringBuffer, Stack Uses
 
 ------------------------------------------------------------------------------------------
-### [스택 - 쇠막대기 - 10799](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_10799.java)
+### [스택 - 쇠막대기 - 10799](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_Prac_Main_10799.java)
 쇠막대기와 레이저 배치를 나타내는 괄호표현이 공백 없이 주어진다 > 잘려진 조각의 총 개수 구하기
 > Stack Uses: 괄호 여닫는 것의 개수
 
 ------------------------------------------------------------------------------------------
-### [스택 - 오큰수 - 17298](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_17298_99.java)
+### [스택 - 오큰수 - 17298](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_Prac_Main_17298_99.java)
 - 오큰수
 > 자신보다 오른쪽에 있는 수 중에 첫번째로 큰 수
 > > 일반적인 구현으로는 `시간초과`
@@ -153,7 +153,7 @@ while (!stack.isEmpty()) {
 > Stack: index, 기존배열 > 결과값 저장
 
 ------------------------------------------------------------------------------------------
-### [스택 - 오등큰수 - 17299](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Prac_Main_17299.java)
+### [스택 - 오등큰수 - 17299](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_Prac_Main_17299.java)
 - 오등큰수
 > 자신보다 오른쪽에 있는 수중에서 빈도수가 첫번째로 큰 수
 > > 오큰수와 같은 로직
@@ -162,13 +162,13 @@ while (!stack.isEmpty()) {
 ------------------------------------------------------------------------------------------
 ## 자료구조 1 (참고)
 ------------------------------------------------------------------------------------------
-### [스택 - 후위 표기식2 - 1935](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Ref_Main_1935.java)
+### [스택 - 후위 표기식2 - 1935](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_Ref_Main_1935.java)
 - 후위표기식 계산하기
 > Stack 을 이용해서 연산자 나올대마다 pop()하여 계산하기
 > > String.format("%.2f". double)
 
 ------------------------------------------------------------------------------------------
-### [스택 - 후위 표기식 - 1918](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/Stack_Ref_Main_1918_99.java)
+### [스택 - 후위 표기식 - 1918](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_Ref_Main_1918_99.java)
 - !후위 표기식 만들기 (답안 확인)
 > 연산식 우선순위에 따라서 결과 Push
 > > 숫자는 append, 결과는 Stack 에서 풀기
@@ -221,7 +221,7 @@ public static void main(String[] args) throws IOException {
 
 
 ------------------------------------------------------------------------------------------
-### [문자열/구현 - 알파벳 개수 - 10808](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/StringNImpl_Ref_Main_10808.java)
+### [문자열/구현 - 알파벳 개수 - 10808](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNImpl_Ref_Main_10808.java)
 - 알파벳 개수
 > - 입력: 소문자 문자열
 > - 출력: 알파벳 개수 출력
@@ -255,7 +255,7 @@ public static void main(String[] args) throws IOException {
 
 
 ------------------------------------------------------------------------------------------
-### [문자열/구현 - 알파벳 찾기 - 10809](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructor/StringNImpl_Ref_Main_10809_99.java)
+### [문자열/구현 - 알파벳 찾기 - 10809](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNImpl_Ref_Main_10809_99.java)
 - 알파벳 찾기
 > - 입력: 소문자 문자열
 > - 출력: a~z index, defaultIfEmpty: -1
