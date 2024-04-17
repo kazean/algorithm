@@ -224,7 +224,7 @@ public static void main(String[] args) throws IOException {
 ### [문자열/구현 - 알파벳 개수 - 10808](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNImpl_Ref_Main_10808.java)
 - 알파벳 개수
 > - 입력: 소문자 문자열
-> - 출력: 알파벳 개수 출력
+> - 출력: 해당 알파벳 개수 출력
 > > 해당 문자열에 해당하는 배열 count++
 ```java
 public static void main(String[] args) throws IOException {
@@ -286,11 +286,76 @@ public static void main(String[] args) throws Exception {
 ```
 
 ------------------------------------------------------------------------------------------
-### [문자열/구현 - 문자열 분석 - 10820]()
+### [문자열/구현 - 문자열 분석 - 10820](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNImpl_Ref_Main_10820.java)
+- 문자열 분석
+> - 입력: 문자열, 길이( 1<= N <= 100)
+> - 출력: 소문자, 대문자, 숫자, 공백 개수 출력
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    StringBuffer sb = new StringBuffer();
+    while (true) {
+        String tmp = br.readLine();
+        if (tmp == null || "".equals(tmp)) {
+            break;
+        }
+        int smallLetterCount, capitalLatterCount, numberCount, spaceCount;
+        smallLetterCount = capitalLatterCount = numberCount = spaceCount = 0;
+        for (int i = 0; i < tmp.length(); i++) {
+            char c = tmp.charAt(i);
+            if ('a' <= c && 'z' >= c) {
+                smallLetterCount++;
+            } else if ('A' <= c && 'Z' >= c) {
+                capitalLatterCount++;
+            } else if ('0' <= c && '9' >= c) {
+                numberCount++;
+            } else {
+                spaceCount++;
+            }
+        }
+        sb.append(smallLetterCount+ " " + capitalLatterCount + " " + numberCount + " " + spaceCount + "\n");
+    }
+    System.out.print(sb.toString());
+}
+```
 ------------------------------------------------------------------------------------------
-### [문자열/구현 - 단어 길이 재기 - 2743]()
+### [문자열/구현 - 단어 길이 재기 - 2743](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNImpl_Ref_Main_2743.java)
+- 단어 길이 제기
+> - 입력: pulljima
+> - 출력: 8
 ------------------------------------------------------------------------------------------
-### [문자열/구현 - ROT13 - 11655]()
+### [문자열/구현 - ROT13 - 11655](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNImpl_Ref_Main_11655.java)
+- ROT13
+> 암호화, 복호화: 문자열 + 13
+> - 입력: Baekjoon Online Judge 
+> - 출력: Onrxwbba Bayvar Whqtr
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    StringBuffer sb = new StringBuffer();
+    for (int i = 0; i < str.length(); i++) {
+        char c = str.charAt(i);
+        if (c >= 'a' && c <= 'z') {
+            c = (char) (c + 13);
+            if (c > 'z') {
+                c = (char)(c - 26);
+            }
+        } else if (c >= 'A' && c <= 'z') {
+            c = (char) (c + 13);
+            if (c > 'Z') {
+                c = (char)(c - 26);
+            }
+        }
+        sb.append(c);
+    }
+    System.out.println(sb.toString());
+}
+```
+> organize
+> - String.charAt() 보다 toCharArrays해서 향상된 for문이 더빠르다
+> - sout(sb)
 ------------------------------------------------------------------------------------------
 ### [문자열/구현/수학/사칙연산 - 네 수 - 10824]()
 ------------------------------------------------------------------------------------------
