@@ -357,12 +357,41 @@ public static void main(String[] args) throws IOException {
 > - String.charAt() 보다 toCharArrays해서 향상된 for문이 더빠르다
 > - sout(sb)
 ------------------------------------------------------------------------------------------
-### [문자열/구현/수학/사칙연산 - 네 수 - 10824]()
+### [문자열/구현/수학/사칙연산 - 네 수 - 10824](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNMath_Ref_Main_10824.java)
+- 네수
+> - 입력: 10 20 30 40
+> - 출력: ((str) A + B) + ((str) C + D)
 ------------------------------------------------------------------------------------------
-### [문자열/정렬 - 접미사 배열 - 11656]()
+### [문자열/정렬 - 접미사 배열 - 11656](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNMath_Ref_Main_10824.java)
 ------------------------------------------------------------------------------------------
+- 접미사 배열
+> - 입력: baekjoon
+> - 출력: 
+```
+aekjoon
+baekjoon
+ekjoon
+joon
+kjoon
+n
+on
+oon
+```
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String input = br.readLine();
+    List<String> lists = new ArrayList<>();
+    for (int i = 0; i < input.length(); i++) {
+        String tmp = input.substring(i, input.length());
+        lists.add(tmp);
+    }
 
+    lists = lists.stream().sorted().collect(Collectors.toList());
 
+    lists.forEach(System.out::println);
+}
+```
 
 ------------------------------------------------------------------------------------------
 ## 2. 수학
