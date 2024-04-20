@@ -7,6 +7,7 @@
 - [3. DP](#3-dp)
 > 2친수, 1로 만들기, 합분해 
 
+
 ------------------------------------------------------------------------------------------
 ## 1. 자료구조
 ------------------------------------------------------------------------------------------
@@ -319,11 +320,13 @@ public static void main(String[] args) throws IOException {
     System.out.print(sb.toString());
 }
 ```
+
 ------------------------------------------------------------------------------------------
 ### [문자열/구현 - 단어 길이 재기 - 2743](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNImpl_Ref_Main_2743.java)
 - 단어 길이 제기
 > - 입력: pulljima
 > - 출력: 8
+
 ------------------------------------------------------------------------------------------
 ### [문자열/구현 - ROT13 - 11655](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNImpl_Ref_Main_11655.java)
 - ROT13
@@ -356,14 +359,15 @@ public static void main(String[] args) throws IOException {
 > organize
 > - String.charAt() 보다 toCharArrays해서 향상된 for문이 더빠르다
 > - sout(sb)
+
 ------------------------------------------------------------------------------------------
 ### [문자열/구현/수학/사칙연산 - 네 수 - 10824](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNMath_Ref_Main_10824.java)
 - 네수
 > - 입력: 10 20 30 40
 > - 출력: ((str) A + B) + ((str) C + D)
+
 ------------------------------------------------------------------------------------------
 ### [문자열/정렬 - 접미사 배열 - 11656](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/StringNMath_Ref_Main_10824.java)
-------------------------------------------------------------------------------------------
 - 접미사 배열
 > - 입력: baekjoon
 > - 출력: 
@@ -393,12 +397,14 @@ public static void main(String[] args) throws IOException {
 }
 ```
 
+
 ------------------------------------------------------------------------------------------
 ## 2. 수학
 ------------------------------------------------------------------------------------------
 ### [나머지 - 10430](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Divide_Main_10430.java)
 > - 입력: 첫째 줄에 A, B, C가 순서대로 주어진다. (2 ≤ A, B, C ≤ 10000)
 > - 출력: 첫째 줄에 (A+B)%C, 둘째 줄에 ((A%C) + (B%C))%C, 셋째 줄에 (A×B)%C, 넷째 줄에 ((A%C) × (B%C))%C를 출력한다.
+
 ------------------------------------------------------------------------------------------
 ### [최대공약수(GCD, Greatest Common Divisor), 최소공배수(LCM) - 2609](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/GcdLcd_Main_2609_99.java)
 > - 입력: 첫째 줄에는 두 개의 자연수가 주어진다. 이 둘은 10,000이하의 자연수이며 사이에 한 칸의 공백이 주어진다. (24 18)
@@ -432,13 +438,14 @@ int gcd(int a, int b) {
 #### 최소 공약수
 두 자연수들의 배수들 중에서 공통된 가장 작은 수를 말한다.
 ```java
-// 최소공배수 : Least Common mulitple
+// 최소공배수 : Least Common Mulitple
 int lcm(int a, int b) {
 	return a * b / gcd(a, b);
 }
 ```
 > 최소공배수 = 두 자연수의 곱 / 최대공약수  
 a * b / gcd(a, b)
+
 ------------------------------------------------------------------------------------------
 ### [소수 찾기 - 에라토스테네스의 체 - 1978](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Prime_Main_1978.java)
 - 소수 개수 구하기
@@ -495,15 +502,97 @@ public class Prime_Main_1978 {
     }
 }
 ```
+
 ------------------------------------------------------------------------------------------
-### [소수 - 에라토스테네스의 체 - 1929](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Prime_Main_1929.java)
+### [소수 구하기 - 에라토스테네스의 체 - 1929](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Prime_Main_1929.java)
+- 숫자 M과 N 사이 소수 구하기
+> - 입력: M, N
+> - 출력: 숫자 사이의 모든 소수
+```java
+public static void isPrime() {
+    prime[0] = prime[1] = true;
+    for (int i = 2; i <= Math.sqrt(prime.length); i++) {
+        if (!prime[i]) {
+            if (i >= 1001) {
+                continue;
+            }
+            for (int j = i * i; j < prime.length; j += i) {
+                prime[j] = true;
+            }
+        }
+    }
+}
+```
+> 소수 구하는 최대크기를 Math.sqrt 활용하여 for문 반복 줄이기
 
 ------------------------------------------------------------------------------------------
 ### [골드바흐의 추측 - 에라토스테네스의 체 - 6588](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Prime_Goldbach_Main_6588.java)
+- 4보다 큰 모든 짝수는 두 홀수 소수의 합으로 나타낼 수 
+> - 입력:
+>> 입력은 하나 또는 그 이상의 테스트 케이스로 이루어져 있다. 테스트 케이스의 개수는 100,000개를 넘지 않는다.  
+>> 각 테스트 케이스는 짝수 정수 n 하나로 이루어져 있다. (6 ≤ n ≤ 1000000)  
+>> 입력의 마지막 줄에는 0이 하나 주어진다.
+```
+8
+20
+42
+0
+```
+> - 출력:
+```
+8 = 3 + 5
+20 = 3 + 17
+42 = 5 + 37
+```
+```java
+public class Prime_Goldbach_Main_6588 {
+
+    static boolean[] prime = new boolean[1000001];
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        isPrime();
+        while (true) {
+            int num = Integer.parseInt(br.readLine());
+            if (num == 0) {
+                break;
+            }
+            StringBuffer sb = new StringBuffer();
+            sb.append(num + " = ");
+            for (int i = 2; i < prime.length; i++) {
+                if (!prime[i] && !prime[num-i]) {
+                    sb.append(i + " + " + (num - i));
+                    break;
+                }
+            }
+            System.out.println(sb.toString());
+        }
+
+    }
+
+    public static void isPrime() {
+        prime[0] = prime[1] = true;
+
+        for (int i = 2; i <= Math.sqrt(prime.length + 1); i++) {
+            for (int j = i * i; j < prime.length; j+=i) {
+                prime[j] = true;
+            }
+        }
+    }
+}
+```
+
 ------------------------------------------------------------------------------------------
 ### [팩토리얼 - 10872](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Factorial_Main_10872.java)
+- 0보다 크거나 같은 정수 N이 주어진다. 이때, N!을 출력하는 프로그램을 작성하시오.
+> - 입력: 첫째 줄에 정수 N(0 ≤ N ≤ 12)이 주어진다. (10)
+> - 출력: 0
+
 ------------------------------------------------------------------------------------------
-### [조합 0의 개수 - 팩토리얼 끝 자리 0의 수 - 2004](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/ZeroCount_Main_2004.java)
+### [조합 0의 개수 - 팩토리얼 끝 자리 0의 수 - 1676](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Factorial_Main_1676_99.java)
+- 끝자리 0 의 개수 구하기
+> - 입력: 50
+> - 출력: 12
+#### 정수론
 - [참고](https://st-lab.tistory.com/165)
 - 매커니즘
 > 끝자리 0은 2, 5가 곱해져있을때다, 팩토리얼을 보면 5의 배수마다 5의 제곱의 지수 값이 1개씩 증가, 25는 카운트가 2개 증가
@@ -528,6 +617,18 @@ public static int power2(int num) {
 }
 ```
 > Math.min(power2(), power5())
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(br.readLine()); // 50
+    int cnt = 0;
+    cnt+=N/5; // 10
+    cnt+=N/25; // 2
+    cnt+=N/125;
+    System.out.println(cnt);
+}
+```
+
 ------------------------------------------------------------------------------------------
 ### n*n 정사각형 개수
 - [참고](https://blog.naver.com/neutrinoant/221274874006)
