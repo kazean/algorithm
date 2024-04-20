@@ -396,11 +396,15 @@ public static void main(String[] args) throws IOException {
 ------------------------------------------------------------------------------------------
 ## 2. 수학
 ------------------------------------------------------------------------------------------
-## [나머지](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Divide_Main_10430.java)
+### [나머지 - 10430](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Divide_Main_10430.java)
+> - 입력: 첫째 줄에 A, B, C가 순서대로 주어진다. (2 ≤ A, B, C ≤ 10000)
+> - 출력: 첫째 줄에 (A+B)%C, 둘째 줄에 ((A%C) + (B%C))%C, 셋째 줄에 (A×B)%C, 넷째 줄에 ((A%C) × (B%C))%C를 출력한다.
 ------------------------------------------------------------------------------------------
 ### [최대공약수(GCD, Greatest Common Divisor), 최소공배수(LCM) - 2609](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/GcdLcd_Main_2609_99.java)
+> - 입력: 첫째 줄에는 두 개의 자연수가 주어진다. 이 둘은 10,000이하의 자연수이며 사이에 한 칸의 공백이 주어진다. (24 18)
+> - 출력: 첫째 줄에는 입력으로 주어진 두 수의 최대공약수를, 둘째 줄에는 입력으로 주어진 두 수의 최소 공배수를 출력한다.(6\n 72)
 #### 최대공약수 - 유클리트 호제법
-두 자연수가 공통으로 갖는 약수들 중에서 가증 큰 값 두 자연수들의 배수들 중에서 공통된 가장 작은수
+두 자연수가 공통으로 갖는 약수들 중에서 가장 큰 값 두 자연수들의 배수들 중에서 공통된 가장 작은수
 - [참고](https://st-lab.tistory.com/154)
 - 매커니즘
 > 두 수 a, b 이고 r = a mod b  
@@ -436,10 +440,14 @@ int lcm(int a, int b) {
 > 최소공배수 = 두 자연수의 곱 / 최대공약수  
 a * b / gcd(a, b)
 ------------------------------------------------------------------------------------------
-### [소수 - 에라토스테네스의 체 - 1929](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Prime_Main_1929.java)
+### [소수 찾기 - 에라토스테네스의 체 - 1978](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Prime_Main_1978.java)
+- 소수 개수 구하기
+> - 입력: 첫 줄에 수의 개수 N이 주어진다. N은 100이하이다. 다음으로 N개의 수가 주어지는데 수는 1,000 이하의 자연수이다.
+> - 출력: 주어진 수들 중 소수의 개수를 출력한다.
+#### 에라토스테네스의 체 활용
 - [참고](https://firework-ham.tistory.com/8)
-- 매커니즘
-> 소수가 되는 수의 배수를 지우면 남은 건은 소수만 된다
+> - 매커니즘
+> > 소수가 되는 수의 배수를 지우면 남은 건은 소수만 된다
 ```java
 public static void prime() {
     prime[0] = prime[1] = true;
@@ -453,6 +461,43 @@ public static void prime() {
     }
 }
 ```
+```java
+public class Prime_Main_1978 {
+
+    static boolean[] isPrimes = new boolean[1001];
+    public static void main(String[] args) throws IOException {
+        int result = 0;
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        String[] nums = br.readLine().split(" ");
+        isPrime(1000);
+        for (int i = 0; i < nums.length; i++) {
+            int num = Integer.parseInt(nums[i]);
+            if(!isPrimes[num]) result++;
+        }
+
+        System.out.println(result);
+    }
+
+    public static void isPrime(int num) {
+        isPrimes[0] = true;
+        isPrimes[1] = true;
+
+        for (int i = 2; i < isPrimes.length; i++) {
+            if (!isPrimes[i]) {
+                for (int j = i * i; j < isPrimes.length; j+=i) {
+                    isPrimes[j] = true;
+                }
+            }
+        }
+
+    }
+}
+```
+------------------------------------------------------------------------------------------
+### [소수 - 에라토스테네스의 체 - 1929](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Prime_Main_1929.java)
+
 ------------------------------------------------------------------------------------------
 ### [골드바흐의 추측 - 에라토스테네스의 체 - 6588](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Prime_Goldbach_Main_6588.java)
 ------------------------------------------------------------------------------------------
@@ -490,6 +535,8 @@ public static int power2(int num) {
 int answer = (n-1)n*n(n+1)/12;
 ```
 ------------------------------------------------------------------------------------------
+
+
 ## 수학 1(연습)
 ------------------------------------------------------------------------------------------
 ### 진수 변환
@@ -545,8 +592,12 @@ public class Solution {
 ------------------------------------------------------------------------------------------
 ## [2진수 8진수 = 1373](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Binary2n8_Main_1373.java)
 - [참고](https://hianna.tistory.com/527)
+------------------------------------------------------------------------------------------
 
 
+## 수학 1(참고)
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 
 ---------------------------------------------------------------------------------------
