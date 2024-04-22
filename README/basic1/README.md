@@ -588,7 +588,7 @@ public class Prime_Goldbach_Main_6588 {
 > - 출력: 0
 
 ------------------------------------------------------------------------------------------
-### [조합 0의 개수 - 팩토리얼 끝 자리 0의 수 - 1676](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Factorial_Main_1676_99.java)
+### [팩토리얼 0의 개수 - 1676](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Factorial_Main_1676_99.java)
 - 끝자리 0 의 개수 구하기
 > - 입력: 50
 > - 출력: 12
@@ -630,7 +630,43 @@ public static void main(String[] args) throws IOException {
 ```
 
 ------------------------------------------------------------------------------------------
-### n*n 정사각형 개수
+### [조합 0의 개수 - 2004](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Factorial_Main_2004.java)
+- nCm = n!/((n-m)! * m!)
+> - 각 승수 구해서 빼기 
+> - 승수 구하는 법
+> - 입력: 25 12
+> - 출력: 2
+```java
+public class Factorial_Main_2004 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] inputs = br.readLine().split(" ");
+        int num1 = Integer.parseInt(inputs[0]);
+        int num2 = Integer.parseInt(inputs[1]);
+        int twoCount = 0;
+        int fiveCount = 0;
+
+        twoCount = count(num1, 2) - count(num1 - num2, 2) - count(num2, 2);
+        fiveCount = count(num1, 5) - count(num1 - num2, 5) - count(num2, 5);
+
+        System.out.println(Math.min(twoCount, fiveCount));
+    }
+
+    public static int count(int tmp, int modNum) {
+        int cnt = 0;
+        while (tmp >= modNum) {
+            cnt += tmp/modNum;
+            tmp /= modNum;
+        }
+        return cnt;
+    }
+}
+```
+> 팩토리얼 각 승수는 `tmp/modNum`
+
+------------------------------------------------------------------------------------------
+### Ref, n*n 정사각형 개수
 - [참고](https://blog.naver.com/neutrinoant/221274874006)
 ```java
 int answer = (n-1)n*n(n+1)/12;
@@ -638,9 +674,98 @@ int answer = (n-1)n*n(n+1)/12;
 ------------------------------------------------------------------------------------------
 
 
+------------------------------------------------------------------------------------------
 ## 수학 1(연습)
 ------------------------------------------------------------------------------------------
-### 진수 변환
+### [GCD합 - 9613](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Gcd_Prac_Main_9613.java)
+- 모든 경우의 수 쌍에 대한 GCD 구하기
+
+------------------------------------------------------------------------------------------
+### [숨박꼭질6 - 17087](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Euclidean_Prac_Main_17087.java)
+- 유클리드 호제법
+> GCD
+- 현재위치 S 동생위치 A[N], S+D/S-D를 해서 모든 동생위치 찾는 최대값 D 구하기
+> - In/Out
+```
+1000000000
+> 999999999
+
+3 81
+33 105 57
+> 24
+```
+```java
+public class Euclidean_Prac_Main_17087 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n, s;
+        int[] line1 = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+        n = line1[0];
+        s = line1[1];
+
+        int[] childs = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+        int result = 1;
+
+        for (int i = 0; i < n; i++) {
+            int abs = Math.abs(s - childs[i]);
+            if (i == 0) {
+                result = abs;
+            } else {
+                result = gcd(result, abs);
+            }
+        }
+
+        System.out.println(result);
+
+    }
+
+    public static int gcd(int a, int b) {
+        if(b == 0) return a;
+        return gcd(b, a % b);
+    }
+}
+```
+
+------------------------------------------------------------------------------------------
+### [2진수 8진수 - 17087](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Euclidean_Prac_Main_17087.java)
+- 2진수 -> 8진수
+> - 입력: 11001100
+> - 출력: 314
+```java
+public class Binary2n8_Main_1373 {
+    static StringBuilder answer = new StringBuilder(333339);
+    static int[] pow = {1, 2, 4};
+    static int startI = 0;
+    static String inputs;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        inputs = br.readLine();
+        String temp; // 답은 string형으로 처리
+
+        int len = inputs.length(), templen;
+        if (len % 3 == 1) {
+            cal(0, 1);
+            startI += 1;
+        } else if (len % 3 == 2) {
+            cal(0, 2);
+            startI += 2;
+        }
+        for (int i = startI; i < len - 1; i += 3)
+            cal(i, 3);
+        System.out.println(answer);
+    }
+
+    static void cal(int i, int len) {
+        int tempsum = 0;
+        for (int j = 0; j < len; j++)
+            tempsum += (inputs.charAt(i + j) - '0') * pow[len - j - 1];
+        answer.append(tempsum);
+    }
+}
+```
+
+#### 진수 변환
 - [참고](https://hianna.tistory.com/527)
 - 매커니즘
 > 10진수를 제외한 나머지 진수는 String으로 받아야 한다. -> int는 전부 10진수로 인식  
@@ -691,8 +816,7 @@ public class Solution {
 > Integer.toString(int num, int radix) num(10) > radix
 > Integer.parseInt(int num, int radix) radix > num(10)
 ------------------------------------------------------------------------------------------
-## [2진수 8진수 = 1373](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Binary2n8_Main_1373.java)
-- [참고](https://hianna.tistory.com/527)
+## [8진수 2진수 - 1212](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Binary2n8_Main_1373.java)
 ------------------------------------------------------------------------------------------
 
 
