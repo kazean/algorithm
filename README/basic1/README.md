@@ -671,6 +671,7 @@ public class Factorial_Main_2004 {
 ```java
 int answer = (n-1)n*n(n+1)/12;
 ```
+
 ------------------------------------------------------------------------------------------
 
 
@@ -682,8 +683,6 @@ int answer = (n-1)n*n(n+1)/12;
 
 ------------------------------------------------------------------------------------------
 ### [숨박꼭질6 - 17087](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Euclidean_Prac_Main_17087.java)
-- 유클리드 호제법
-> GCD
 - 현재위치 S 동생위치 A[N], S+D/S-D를 해서 모든 동생위치 찾는 최대값 D 구하기
 > - In/Out
 ```
@@ -694,6 +693,8 @@ int answer = (n-1)n*n(n+1)/12;
 33 105 57
 > 24
 ```
+- 유클리드 호제법
+> GCD
 ```java
 public class Euclidean_Prac_Main_17087 {
     public static void main(String[] args) throws IOException {
@@ -815,11 +816,158 @@ public class Solution {
 ```
 > Integer.toString(int num, int radix) num(10) > radix
 > Integer.parseInt(int num, int radix) radix > num(10)
+
 ------------------------------------------------------------------------------------------
-## [8진수 2진수 - 1212](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Binary2n8_Main_1373.java)
+## [8진수 2진수 - 1212](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Oct2Binary_Prac_Main_1212.java)
+- 8진수 > 2진수
+> - 입출력
+> > 314 > 11001100  
+> > 0 > 0
+
+- [NumberFormatException] Long범위 넘을 때 Input Len: 333,334
+- [OverFlow] StringBuffer 저장범위 넘을 때(OverFlow)
+```java
+public static void main(String[] args) throws Exception{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String input = br.readLine();
+    int length = input.length();
+
+    for(int i=0; i<length; i++) {
+        int num = Integer.parseInt(String.valueOf(input.charAt(i)));
+        switch (num) {
+            case 7:
+                System.out.print("111");
+                break;
+            case 6:
+                System.out.print("110");
+                break;
+            case 5:
+                System.out.print("101");
+                break;
+            case 4:
+                System.out.print("100");
+                break;
+            case 3:
+                if (i != 0) {
+                    System.out.print("011");
+                } else {
+                    System.out.print("11");
+                }
+                break;
+            case 2:
+                if (i != 0) {
+                    System.out.print("010");
+                } else {
+                    System.out.print("10");
+                }
+                break;
+            case 1:
+                if (i != 0) {
+                    System.out.print("001");
+                } else {
+                    System.out.print("1");
+                }
+                break;
+            case 0:
+                if (i != 0) {
+                    System.out.print("000");
+                } else {
+                    System.out.print("0");
+                }
+                break;
+        }
+    }
+}
+```
+
+------------------------------------------------------------------------------------------
+## [!-2진수 - 2089](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/MinusBinary_Prac_Main_2089_99.java)
+- 10진수 > -2진수
+> - 입출력: -13 > 110111
+
+- 진법변환 변형문제
+> N%2 현재 자리수 append, -2 곱해서 나눈 몫에 올림 한수가 다음 자리수 [반복]
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int input = Integer.parseInt(br.readLine());
+    StringBuffer sb = new StringBuffer();
+
+    if (input == 0) {
+        System.out.println("0");
+    } else {
+        while (input != 1) {
+            sb.append(Math.abs(input % 2));
+            input = (int) Math.ceil((double) input / -2);
+        }
+        sb.append(input);
+    }
+
+    System.out.println(sb.reverse());
+}
+```
+
+------------------------------------------------------------------------------------------
+## [골드바흐 파티션 - 17103](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/GoldbachPartition_Prac_Main_17103.java)
+- 짝수 N > 두 소수의 합 개수 구하기 
+> - 입출력: 
+> > 
+```
+5
+6
+8
+10
+12
+100
+
+1
+1
+2
+1
+6
+```
+- 에라토스테네스의 체
+> Math.sqrt(N의 최대수), !isPrime(n) && !isPrime(n-j)
+```java
+public class GoldbachPartition_Prac_Main_17103 {
+    static boolean[] isPrime = new boolean[1000001];
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+
+        initPrime();
+
+        for (int i = 0; i < t; i++) {
+            int num = Integer.parseInt(br.readLine());
+            int cnt = 0;
+
+            for (int j = 2; j <= num / 2; j++) {
+                if (!isPrime[j] && !isPrime[num - j]) {
+                    cnt++;
+                }
+            }
+
+            System.out.println(cnt);
+        }
+    }
+
+    public static void initPrime() {
+        isPrime[0] = isPrime[1] = true;
+        for (int i = 2; i <= Math.sqrt(isPrime.length); i++) {
+            if (!isPrime[i]) {
+                for (int j = i * i; j < isPrime.length; j += i) {
+                    isPrime[j] = true;
+                }
+            }
+        }
+    }
+}
+```
+
 ------------------------------------------------------------------------------------------
 
 
+------------------------------------------------------------------------------------------
 ## 수학 1(참고)
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
