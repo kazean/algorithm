@@ -122,6 +122,9 @@ dq.addFirst(E), addLast(E), E poll~(), E peek~()
 ------------------------------------------------------------------------------------------
 
 
+
+
+------------------------------------------------------------------------------------------
 ## 자료구조 1 (연습)
 ------------------------------------------------------------------------------------------
 ### [스택 - 단어뒤집기2 - 17413](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_Prac_Main_17413.java)
@@ -158,6 +161,10 @@ while (!stack.isEmpty()) {
 - 오등큰수
 > 자신보다 오른쪽에 있는 수중에서 빈도수가 첫번째로 큰 수
 > > 오큰수와 같은 로직
+
+------------------------------------------------------------------------------------------
+
+
 
 
 ------------------------------------------------------------------------------------------
@@ -396,6 +403,14 @@ public static void main(String[] args) throws IOException {
     lists.forEach(System.out::println);
 }
 ```
+
+------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
 
 ------------------------------------------------------------------------------------------
@@ -675,6 +690,8 @@ int answer = (n-1)n*n(n+1)/12;
 ------------------------------------------------------------------------------------------
 
 
+
+
 ------------------------------------------------------------------------------------------
 ## 수학 1(연습)
 ------------------------------------------------------------------------------------------
@@ -772,6 +789,9 @@ public class Binary2n8_Main_1373 {
 > 10진수를 제외한 나머지 진수는 String으로 받아야 한다. -> int는 전부 10진수로 인식  
 2진수, 8진수, 16진수는 아래와 같이 Binary, Octal, Hex함수가 존재한다.  
 물론 toString(int n, int radix)로 사용해도 무관하다.
+- 진법변환
+> - Integer.toString(<num>, <radix>): 10진수 > radix
+> - Integer.parseInt(<num>, <radix>): radix > 10진수
 ```java
 public class Solution {
     public static void main(String[] args) {
@@ -818,7 +838,7 @@ public class Solution {
 > Integer.parseInt(int num, int radix) radix > num(10)
 
 ------------------------------------------------------------------------------------------
-## [8진수 2진수 - 1212](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Oct2Binary_Prac_Main_1212.java)
+### [8진수 2진수 - 1212](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Oct2Binary_Prac_Main_1212.java)
 - 8진수 > 2진수
 > - 입출력
 > > 314 > 11001100  
@@ -967,13 +987,130 @@ public class GoldbachPartition_Prac_Main_17103 {
 ------------------------------------------------------------------------------------------
 
 
+
+
 ------------------------------------------------------------------------------------------
 ## 수학 1(참고)
 ------------------------------------------------------------------------------------------
+### [진법 변환2 - 11005](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/FormationN_Ref_Main_11005.java)
+- 10진수 > N진수
+> - In/Out: 60466175 36 > ZZZZZ
+```java
+ public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int[] inputs = Arrays.stream(br.readLine().split(" "))
+                .mapToInt(Integer::valueOf)
+                .toArray();
+        int num = inputs[0];
+        int radix = inputs[1];
+
+        System.out.println(Integer.toString(num, radix).toUpperCase());
+
+    }
+```
+
+------------------------------------------------------------------------------------------
+### [진법 변환 - 2745](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/FormationToBaseTen_Ref_Main_2745.java)
+- N진수 > 10진수
+> - In/Out: ZZZZZ 36 > 60466175
+```java
+Integer.parseInt(num, radix);
+```
+
+------------------------------------------------------------------------------------------
+### [Base Converison - 2745](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/BaseConversion_Ref_Main_11576.java)
+- A 진수 > B 진수 (각 숫자 0 ~ A미만, but 영문자로 표기 X)
+> - In/Out: 
+```
+17 8
+2
+2 16
+> 6 2
+```
+```java
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] inputs = br.readLine().split(" ");
+    int ARadix = Integer.parseInt(inputs[0]);
+    int BRadix = Integer.parseInt(inputs[1]);
+
+    int m = Integer.parseInt(br.readLine());
+    int[] nums = Arrays.stream(br.readLine().split(" "))
+            .mapToInt(Integer::parseInt)
+            .toArray();
+
+    int radixPos = 1;
+    int tenResult = 0;
+    for(int i = nums.length-1; i>=0; i--) {
+        tenResult += nums[i] * radixPos;
+        radixPos *= ARadix;
+    }
+
+    List<Integer> results = new ArrayList<>();
+
+    while (tenResult != 0) {
+        results.add(tenResult % BRadix);
+        tenResult /= BRadix;
+    }
+
+    for(int i = results.size()-1; i >= 0; i--) {
+        if (i != 0) {
+            System.out.print(results.get(i) + " ");
+        } else {
+            System.out.println(results.get(i));
+        }
+    }
+}
+```
+
+------------------------------------------------------------------------------------------
+### [소인수분해 - 2745](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Factorization_Ref_Main_11653.java)
+- 소인수분해
+> - In/Out: 
+```
+72
+>
+2
+2
+2
+3
+3
+```
+```java
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    int num = Integer.parseInt(br.readLine());
+
+    List<Integer> results = new ArrayList<>();
+    while (num != 1) {
+        for (int i = 2; i <= num; i++) {
+            if (num % i == 0) {
+                num /= i;
+                results.add(i);
+                break;
+            }
+        }
+    }
+
+    results.stream()
+            .sorted()
+            .forEach(System.out::println);
+}
+```
+> 굳이 sorted, 결과 StringBuffer 사용
+
 ------------------------------------------------------------------------------------------
 
 
----------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------
 ## 3. dp
 ------------------------------------------------------------------------------------------
 ### [1로 만들기](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Make1_Main_1463_99.java)
@@ -1001,6 +1138,7 @@ public static void main(String[] args) {
     System.out.println(dp[size]);
 }
 ```
+
 ------------------------------------------------------------------------------------------
 ### [2친수](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/BinaryNumber_Main_2193.java)
 - 매커니즘
@@ -1027,6 +1165,7 @@ public static void main(String[] args) throws IOException {
     br.close();
 }
 ```
+
 ------------------------------------------------------------------------------------------
 ### [합분해](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SumUp_Main_2225.java)
 - 매커니즘
@@ -1051,6 +1190,12 @@ for (int i = 1; i <= N; i++) {
     }
 }
 ```
+
+------------------------------------------------------------------------------------------
+
+
+
+
 ------------------------------------------------------------------------------------------
 ## DP1(연습)
 ------------------------------------------------------------------------------------------
