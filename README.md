@@ -5,5 +5,5 @@
 > - 자료구조, 수학, DP
 > > beakjoon.basic1
 - [알고리즘 기초(2/2)](https://github.com/kazean/algorithm/tree/main/README/basic2)
-> - 그래프, BFS, Tree
+> - Brute Force, 그래프, BFS, Tree
 > > beakjoon.basic2

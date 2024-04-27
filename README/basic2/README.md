@@ -497,7 +497,7 @@ public class ConnectedNode_Main_11724 {
 - [BFS](#숨바꼭질---1697)
 
 ---------------------------------------------------------------------------------------
-### [숨바꼭질 - 1697](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/graph/HideNSeek_Main_1697.java)
+### [숨바꼭질 - 1697](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bfs/HideNSeek_Main_1697.java)
 - 동생 찾기, 이동 +-1/순간이동 2*X
 > - 입력: 현재위치N 동생위치K
 > - 출력: 동생찾는 가장빠른 시간
@@ -570,6 +570,137 @@ public class HideNSeek_Main_1697 {
 
 ---------------------------------------------------------------------------------------
 ## 4. Tree
-- []()
+- [트리 순회](#트리순회---1991)
 
 ---------------------------------------------------------------------------------------
+### [트리순회 - 1991](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/tree/TreeCircuit_Main_1991_99.java)
+- 전위, 중위, 후위, root: 'A'
+> - 입력: 노드개수 / 현재 왼쪽자식 오른쪽자식
+> - 출력: 전위, 중위, 후위
+```
+7
+A B C
+B D .
+C E F
+E . .
+F . G
+D . .
+G . .
+>
+ABDCEFG
+DBAECFG
+DBEGFCA
+```
+- 매커니즘
+> - Node(char value, Node left, Node right)
+> > insertNode(Node temp, char root, char left, char right): left, right 재귀 방식 찾기
+```
+ * 트리 순회 - 재귀 방식으로 search
+ * 전위 : 루트 > 왼쪽 > 오른쪽
+ * 중위 : 왼쪽 > 루트 > 오른쪽
+ * 후위 : 왼쪽 > 오른쪽 > 루트
+
+public static void preOrder(Node node) {
+	if(node ==null) return;
+	System.out.print(node.value);
+	preOrder(node.left);
+	preOrder(node.right);
+}
+
+public static void inOrder(Node node) {
+	if(node ==null) return;
+	inOrder(node.left);
+	System.out.print(node.value);
+	inOrder(node.right);
+}
+
+public static void postOrder(Node node) {
+	if(node ==null) return;
+	postOrder(node.left);
+	postOrder(node.right);
+	System.out.print(node.value);
+}
+```
+- code
+```java
+public class TreeCircuit_Main_1991_99 {
+
+    static Node head = new Node('A', null, null);
+
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine());
+
+        for(int i=0;i<n;i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+
+            char root = st.nextToken().charAt(0);
+            char left = st.nextToken().charAt(0);
+            char right = st.nextToken().charAt(0);
+
+            insertNode(head, root,left,right);
+        }
+
+        preOrder(head);
+        System.out.println();
+        inOrder(head);
+        System.out.println();
+        postOrder(head);
+        System.out.println();
+
+
+
+    }
+
+
+    static class Node{
+        char value;
+        Node left;
+        Node right;
+
+        Node(char value, Node left, Node right){
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    public static void insertNode(Node temp, char root, char left, char right) {
+
+
+        if (temp.value == root) {
+            temp.left = (left == '.' ? null : new Node(left,null,null));
+            temp.right = (right == '.' ? null : new Node(right,null,null));
+        }
+        else {
+            if(temp.left != null) insertNode(temp.left, root, left, right);
+            if(temp.right != null) insertNode(temp.right, root, left, right);
+        }
+    }
+
+    public static void preOrder(Node node) {
+        if(node ==null) return;
+        System.out.print(node.value);
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
+    public static void inOrder(Node node) {
+        if(node ==null) return;
+        inOrder(node.left);
+        System.out.print(node.value);
+        inOrder(node.right);
+    }
+
+    public static void postOrder(Node node) {
+        if(node ==null) return;
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.print(node.value);
+    }
+
+}
+```
+
+------------------------------------------------------------------------------------------
