@@ -1114,6 +1114,10 @@ public static void main(String[] args) throws Exception {
 ## 3. dp
 ------------------------------------------------------------------------------------------
 ### [1로 만들기](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Make1_Main_1463_99.java)
+- X/3, X/2, X-1을 해서 최소 경우의 수 찾기
+> - 입력/출력
+> > 2 > 1
+> > 10 > 3  
 - 매커니즘
 > 전체 경우를 배열로 둔다음 0~N 까지 경우의 수를 반복  
 > 예외 케이스 10은 2로 나누는 것보다 -1뺀후 3으로 나누는 경우가 더 짧다
@@ -1138,6 +1142,61 @@ public static void main(String[] args) {
     System.out.println(dp[size]);
 }
 ```
+
+------------------------------------------------------------------------------------------
+### [2N 타일링](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/TwoNTiling_Main_11726.java)
+- 2*N, 1*2/2*1 우는 경우의수
+> - 입력/출력
+> > 2 > 1  
+> > 10 > 3
+- 매커니즘
+> result[i] = result[i-1] + result[i-2]
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int size = Integer.parseInt(br.readLine());
+
+    int[] results = new int[size+1];
+    results[0] = 0;
+    results[1] = 1;
+    results[2] = 2;
+    for (int i = 3; i <= size; i++) {
+        results[i] = results[i-1]%10007 + results[i-2]%10007;
+    }
+
+    System.out.println(results[size]%10007);
+}
+```
+
+------------------------------------------------------------------------------------------
+### [2N 타일링 2](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/TwoNTiling2_Main_11727.java)
+- 2*N, 1*2/2*1/2*2 우는 경우의수
+> - 입력/출력
+> > 2 > 3  
+> > 8 > 171  
+> > 12 > 2731
+- 매커니즘
+> - 그림을 그려가며 f(n) = f(n-1), f(n-2) 경우의 수 찾기
+> - dp[i] = (dp[i - 1] + dp[i - 2] * 2) % 10007;
+
+------------------------------------------------------------------------------------------
+### [1, 2, 3 더하기](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/OneTwoThreePlus_Main_9095.java)
+- 정수 N, 1/2/3 더해서 만드는 경우의 수
+> - 입력/출력
+```
+3
+4
+7
+10
+>
+7
+44
+274
+```
+- 매커니즘
+> - 점화식 추론
+> > dp[4] = 1+dp[3], 2+dp[2], 3+dp[1]
+> - dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
 
 ------------------------------------------------------------------------------------------
 ### [2친수](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/BinaryNumber_Main_2193.java)
