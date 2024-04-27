@@ -1,6 +1,7 @@
 package baekjoon.basic1.dp;
 
 /**
+ * https://www.acmicpc.net/problem/2193
  * 이친수 - 2193
  *
  * N = 90자리

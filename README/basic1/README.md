@@ -11,6 +11,11 @@
 ------------------------------------------------------------------------------------------
 ## 1. 자료구조
 ------------------------------------------------------------------------------------------
+- [스택](#스택---10828)
+- [큐](#큐---10845)
+- [덱](#덱데크---10845)
+
+------------------------------------------------------------------------------------------
 ### [스택 - 10828](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/datastructure/Stack_Main_10828.java)
 ```java
 Stack<Integer> stack = new Stack<>();
@@ -415,6 +420,12 @@ public static void main(String[] args) throws IOException {
 
 ------------------------------------------------------------------------------------------
 ## 2. 수학
+------------------------------------------------------------------------------------------
+- [GCD, LCM, 유클리드 호제법](#최대공약수gcd-greatest-common-divisor-최소공배수lcm---2609)
+- [소수 찾기](#소수-찾기---에라토스테네스의-체---1978)
+- [0의 개수](#팩토리얼-0의-개수---1676)
+- [진법변환](#2진수-8진수---17087)
+
 ------------------------------------------------------------------------------------------
 ### [나머지 - 10430](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/math/Divide_Main_10430.java)
 > - 입력: 첫째 줄에 A, B, C가 순서대로 주어진다. (2 ≤ A, B, C ≤ 10000)
@@ -1113,7 +1124,12 @@ public static void main(String[] args) throws Exception {
 ------------------------------------------------------------------------------------------
 ## 3. dp
 ------------------------------------------------------------------------------------------
-### [1로 만들기](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Make1_Main_1463_99.java)
+- [1, 2, 3 더하기](#1-2-3-더하기---9095)
+- [이친수까지](#이친수---2193)
+- [합분해까지](#합분해---2225)
+
+------------------------------------------------------------------------------------------
+### [1로 만들기 - 1463](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Make1_Main_1463_99.java)
 - X/3, X/2, X-1을 해서 최소 경우의 수 찾기
 > - 입력/출력
 > > 2 > 1
@@ -1144,13 +1160,14 @@ public static void main(String[] args) {
 ```
 
 ------------------------------------------------------------------------------------------
-### [2N 타일링](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/TwoNTiling_Main_11726.java)
+### [2N 타일링 - 11726](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/TwoNTiling_Main_11726.java)
 - 2*N, 1*2/2*1 우는 경우의수
 > - 입력/출력
 > > 2 > 1  
 > > 10 > 3
 - 매커니즘
-> result[i] = result[i-1] + result[i-2]
+> - 그림을 그려가며 f(n) = f(n-1), f(n-2) 경우의 수 찾기
+> - result[i] = result[i-1] + result[i-2]
 ```java
 public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -1169,7 +1186,7 @@ public static void main(String[] args) throws IOException {
 ```
 
 ------------------------------------------------------------------------------------------
-### [2N 타일링 2](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/TwoNTiling2_Main_11727.java)
+### [2N 타일링 2 - 11727](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/TwoNTiling2_Main_11727.java)
 - 2*N, 1*2/2*1/2*2 우는 경우의수
 > - 입력/출력
 > > 2 > 3  
@@ -1180,7 +1197,7 @@ public static void main(String[] args) throws IOException {
 > - dp[i] = (dp[i - 1] + dp[i - 2] * 2) % 10007;
 
 ------------------------------------------------------------------------------------------
-### [1, 2, 3 더하기](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/OneTwoThreePlus_Main_9095.java)
+### [1, 2, 3 더하기 - 9095](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/OneTwoThreePlus_Main_9095.java)
 - 정수 N, 1/2/3 더해서 만드는 경우의 수
 > - 입력/출력
 ```
@@ -1199,14 +1216,152 @@ public static void main(String[] args) throws IOException {
 > - dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
 
 ------------------------------------------------------------------------------------------
-### [2친수](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/BinaryNumber_Main_2193.java)
+### [카드 구매하기 - 11052](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Card_Main_11052.java)
+- 카드 팩중 N 개의 카드 가장 비싸게 구매하는 경우값 구하기
+> > i번째 카드는 i개수 카드와 입력비용
+> - 입력/출력
+```
+4
+1 5 6 7 > 10
+```
+- 매커니즘
+> - 점화식 추론
+> > dp[i] = dp[i-j] + dp[j]
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    int n = Integer.parseInt(br.readLine());
+    String[] packs = br.readLine().split(" ");
+    int[] dp = new int[n + 1];
+
+    for (int i = 1; i <= n; i++) {
+        int max = Integer.parseInt(packs[i-1]);
+        for (int j = 1; j < i; j++) {
+            max = Math.max(max, dp[i - j] + dp[j]);
+        }
+        dp[i] = max;
+    }
+    System.out.println(dp[n]);
+
+}
+```
+
+------------------------------------------------------------------------------------------
+### [카드 구매하기 2 - 16194](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Card_Main_16194.java)
+- 카드 팩중 N 개의 카드 가장 싸게 구매하는 경우값 구하기
+> > i번째 카드는 i개수 카드와 입력비용
+> - 입력/출력
+```
+4
+1 5 6 7 > 4
+```
+- 매커니즘
+> - 점화식 추론
+> > dp[i] = dp[i-j] + dp[j]
+
+------------------------------------------------------------------------------------------
+### [!1, 2, 3 더하기 5 - 15990](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/OneTowThreePlusFive_Main_15990_99.java)
+- 정수 N 을 1,2,3 조합의 개수 단, 조합의 연속 숫자가 있으면 안됨
+> - 입력/출력
+```
+3
+4
+7
+10
+>
+3
+9
+27
+```
+- 매커니즘
+> - 점화식 추론: 2차원 배열
+> > dp[i][1] = dp[i-1][2] + dp[i-1][3]  
+> > dp[i][2] = dp[i-1][1] + dp[i-1][3]  
+> > dp[i][3] = dp[i-1][1] + dp[i-1][2]
+> > > N은 N-1의 2,3 로 끝나는 경우  
+> > > N-2의 1,3로 끝나는 경우  
+> > > N-3의 1,2로 끝나는 경우
+```java
+public static void main(String[] args) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    int n = stoi(br.readLine());
+    long[][] dp = new long[100_001][4];
+    dp[1][1] = 1; // 1
+    dp[2][2] = 1; // 2
+    dp[3][1] = 1; // 2+1
+    dp[3][2] = 1; // 1+2
+    dp[3][3] = 1; // 3
+    for(int i = 4; i <= 100_000; i++) {
+        dp[i][1] = (dp[i-1][2] + dp[i-1][3]) % 1_000_000_009;
+        dp[i][2] = (dp[i-2][1] + dp[i-2][3]) % 1_000_000_009;
+        dp[i][3] = (dp[i-3][1] + dp[i-3][2]) % 1_000_000_009;
+    }
+
+    for(int i = 0; i < n; i++) {
+        int t = stoi(br.readLine());
+        sb.append((dp[t][1] + dp[t][2] + dp[t][3]) % 1_000_000_009 + "\n");
+    }
+
+    System.out.println(sb);
+}
+public static int stoi(String str) {return Integer.parseInt(str);}
+```
+
+------------------------------------------------------------------------------------------
+### [쉬운 계단 수 - 10844](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Stairs_Main_10844.java)
+- 길이 N, 인접 숫자 차이가 1인수
+> - 입력/출력
+```
+1 > 9
+2 > 17
+```
+- 매커니즘 - 점화식 추론
+> dp[n][i] = dp[n-1][i-1] + dp[n-1][i+1]
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    final int N = Integer.parseInt(br.readLine());
+    final int MAX = 100;
+    //                 2_147_483_647
+    final int DIVIDE = 1_000_000_000;
+    long[][] dp = new long[MAX + 1][10];
+    dp[1] = new long[]{0, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+
+    for (int i = 2; i <= MAX; i++) {
+        for (int j = 0; j <= 9; j++) {
+            long preNum = 0;
+            long nextNum = 0;
+            if(j - 1 >= 0) preNum = dp[i - 1][j - 1];
+            if(j + 1 <= 9) nextNum = dp[i -1][j + 1];
+            dp[i][j] = (preNum + nextNum) % DIVIDE;
+        }
+    }
+
+    long result = 0;
+    for (int i = 0; i <= 9; i++) {
+        result = (result + dp[N][i]) % DIVIDE;
+    }
+    System.out.println(result);
+
+}
+```
+
+------------------------------------------------------------------------------------------
+### [이친수 - 2193](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/BinaryNumber_Main_2193.java)
+- 1과 0으로 만 이루어진수 
+> - 입력/ 출력
+> > 3 > 2
 - 매커니즘
 ```text
-0과 1로만 이루어진 수를 이진수라 한다. 
-이러한 이진수 중 특별한 성질을 갖는 것들이 있는데, 이들을 이친수(pinary number)라 한다. 이친수는 다음의 성질을 만족한다.
+dp[n] = dp[n-1] + dp[n-2]
 
-1. 이친수는 0으로 시작하지 않는다.
-2. 이친수에서는 1이 두 번 연속으로 나타나지 않는다. 즉, 11을 부분 문자열로 갖지 않는다.
+dp[4] = 10XX
+dp[3] = 100, 101 > 00, 01(뒤의 두자리)
+> 0으로 시작하는 수
+dp[2] = 10 > 10 
+> 1으로 시작하는 수
 ```
 > 점화식
 ```java
@@ -1226,27 +1381,39 @@ public static void main(String[] args) throws IOException {
 ```
 
 ------------------------------------------------------------------------------------------
-### [합분해](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SumUp_Main_2225.java)
+### [합분해 - 2225](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SumUp_Main_2225.java)
+- 0 ~ N 까지의 정수 K개를 더해서 합이 N이 되는 수
 - 매커니즘
 ```text
-0부터 N까지의 정수 K개를 더해서 그 합이 N이 되는 경우의 수를 구하는 프로그램을 작성하시오.
 덧셈의 순서가 바뀐 경우는 다른 경우로 센다(1+2와 2+1은 서로 다른 경우). 또한 한 개의 수를 여러 번 쓸 수도 있다.
-```
 > 점화식 K-1개 수를 합해 만든 값 + 0 ~ N 까지의 정수를 더한다면 K-1개의 수로 만든 합에 1개의 정수를 더한 것이므로  
 > K개의 수를 사용해 만든 어떤합이 될것이다.
+```
 - [참고](https://nahwasa.com/entry/%EB%B0%B1%EC%A4%80-2225-%EC%9E%90%EB%B0%94-%ED%95%A9%EB%B6%84%ED%95%B4-BOJ-2225-JAVA)
 ```java
-for (int i = 1; i < N + 1; i++) {
-    dp[i][1] = 1;
-}
-for (int i = 1; i < K + 1; i++) {
-    dp[1][i] = 1;
-}
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] inputs = br.readLine().split(" ");
 
-for (int i = 1; i <= N; i++) {
-    for (int j = 2; j <= K; j++) {
-        dp[i][j] = (dp[i][j - 1] + dp[i - 1][j]) % mod;
+    int N = Integer.parseInt(inputs[0]);
+    int K = Integer.parseInt(inputs[1]);
+    int[][] dp = new int[N + 1][K + 1];
+    int mod = 1000000000;
+
+    for (int i = 1; i < N + 1; i++) {
+        dp[i][1] = 1;
     }
+    for (int i = 1; i < K + 1; i++) {
+        dp[1][i] = 1;
+    }
+
+    for (int i = 1; i <= N; i++) {
+        for (int j = 2; j <= K; j++) {
+            dp[i][j] = (dp[i][j - 1] + dp[i - 1][j]) % mod;
+        }
+    }
+
+    System.out.println(dp[N][K]);
 }
 ```
 
@@ -1287,6 +1454,7 @@ public class Plus123_Main_15988 {
     }
 }
 ```
+
 ------------------------------------------------------------------------------------------
 ### [rgb 거리](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/RGB_Main_1149_99.java)
 - 매커니즘
@@ -1326,6 +1494,12 @@ public static void main(String[] args) throws NumberFormatException, IOException
     System.out.println(Math.min(Math.min(max[n][0], max[n][1]), max[n][2]));
 }
 ```
+
+------------------------------------------------------------------------------------------
+
+
+
+
 ------------------------------------------------------------------------------------------
 ## DP1(도전)
 ------------------------------------------------------------------------------------------
