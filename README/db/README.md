@@ -6,6 +6,71 @@
 - []
 
 ------------------------------------------------------------------------------------------
+### Function
+#### 집계함수
+- MAX, MIN, AVG, SUM, COUNT(COL)
+- MOD(A, B)
+
+#### 문자열함수
+- LOWER, UPPER, LENGTH
+- CONCAT(A, B)
+- SUBSTR(varchar, 6)/(varchar, startI, endI)
+- INSTR(varchar, 'A')
+> 특정 문자의 위치를 세는 함수, 없으면: 0
+- TRIM, LTRIM, RTRIM
+- REPLACE(varchar, 'A', 'B')
+> A를 B로 교체
+- NVL(exp1, exp2)
+> exp1이 null이면 exp2를 반환
+- NVL2(exp1, exp2, exp3)
+> exp1이 !null: exp2, null: exp3
+- NULLIF(exp1, exp2)
+> exp1과 exp2를 비교해서 exp1 = exp2: null, !=: exp1
+- COALESCE(exp1, exp2, expN)
+> null이 아닌 첫번재 expN을 반환
+
+#### 숫자함수
+- ABS, CEIL, FLOOR
+- ROUND, TRUNC(N, M)
+- MOD(A, B)
+
+#### 날짜함수
+- EXTRACT(year from sysdate)
+> month, day
+- ADD_MONTH(sysdate, 5)
+
+#### Format함수
+- TO_CHAR(date, 'YYYY-MM-DD- HH/HH24:MI:SS')
+- TO_DATE(varchar, 'YYYY-MM-DD')
+- TO_NUMBER(varchar)
+
+#### 조건함수
+- DECODE(컬럼, 조건1, 결과1, 조건2, 결과2, ..., 기타결과)
+- SWITCH
+```
+CASE WHEN COL = 'A' THEN ~
+	WHEN COL = 'B' THEN ~
+	ELSE ~
+END
+
+CASE COL
+	WHEN 'A'	THEN ~
+	WHEN 'B'	THEN ~
+	ELSE
+END
+```
+
+------------------------------------------------------------------------------------------
+### WINDOW FUNCTION
+- SELECT WINDOW_FUNCTION(ARG) OVER ([PARTITION BY COL] [ORDER BY 절] [WINDOWING 절])
+#### 순위함수
+- RANK, DENSE_RANK, ROW_NUMBER
+#### 집계함수
+- SUM, MAX, MIN, AVG, COUNT
+#### 행 순서 관련 함수
+- FIRST_VALUE, LAST_VALUE, LAG, LEAD
+
+------------------------------------------------------------------------------------------
 ### [특이 형질을 가지는 대장균 찾기 - SELECT / BIT](https://school.programmers.co.kr/learn/courses/30/lessons/301646)
 - 2(X) AND (1(O) or 3(O))
 - 1111(2진수) : 4,3,2,1
