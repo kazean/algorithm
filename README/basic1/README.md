@@ -1429,6 +1429,76 @@ public class SequenceInc_Main_11053 {
 ```
 
 ------------------------------------------------------------------------------------------
+### [가장 긴 증가하는 부분수열4 - 14002](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SequenceInc4_Main_11053.java)
+- 주어진 수열중에서 가장 긴 증가하는 수열 찾기
+> - 입력/ 출력
+```
+6
+10 20 10 30 20 50
+> 4
+
+[반례]
+8
+1 8 9 9 9 2 3 4
+> 4
+```
+- 매커니즘
+```text
+int[] dp = new int[N];
+List[] list = new List[N];
+
+dp[n] = n > j, MAX[dp[n-1 ~ 1]] + 1
+list[n] = n > j, list[i].addAll(list[j]).add(nums[n])
+```
+```java
+public class SequenceInc_Main_11053 {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        int[] nums;
+        int[] dp = new int[N];
+        List[] list = new List[N];
+        for (int i = 0; i < list.length; i++) {
+            list[i] = new ArrayList<>();
+        }
+
+        nums = Arrays.stream(br.readLine().split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        List<Integer> result = new ArrayList<>();
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            int len = 1;
+            int idx = i;
+            for (int j = i - 1; j >= 0; j--) {
+                if (nums[i] > nums[j]) {
+                    if (len < dp[j] + 1) {
+                        len = dp[j] + 1;
+                        idx = j;
+                    }
+                }
+            }
+            dp[i] = len;
+            if(idx != i)    list[i].addAll(list[idx]);
+            list[i].add(nums[i]);
+            if (len > max) {
+                max = len;
+                result = list[i];
+            }
+        }
+        System.out.println(max);
+        result.stream()
+                .sorted()
+                .forEach(i -> System.out.print(i + " "));
+    }
+
+}
+```
+
+------------------------------------------------------------------------------------------
 ### [합분해 - 2225](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SumUp_Main_2225.java)
 - 0 ~ N 까지의 정수 K개를 더해서 합이 N이 되는 수
 - 매커니즘
