@@ -1131,13 +1131,13 @@ public static void main(String[] args) throws Exception {
 ------------------------------------------------------------------------------------------
 ### [1로 만들기 - 1463](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Make1_Main_1463_99.java)
 - X/3, X/2, X-1을 해서 최소 경우의 수 찾기
-> - 입력/출력
+- 입력/출력
 > > 2 > 1
 > > 10 > 3  
 - 매커니즘
 > 전체 경우를 배열로 둔다음 0~N 까지 경우의 수를 반복  
 > 예외 케이스 10은 2로 나누는 것보다 -1뺀후 3으로 나누는 경우가 더 짧다
-> > Math.min(dp[n/3], dp[n/2], dp[n-1])
+> > `Math.min(dp[n/3], dp[n/2], dp[n-1])`
 ```java
 public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
@@ -1162,12 +1162,12 @@ public static void main(String[] args) {
 ------------------------------------------------------------------------------------------
 ### [2N 타일링 - 11726](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/TwoNTiling_Main_11726.java)
 - 2*N, `1*2 / 2*1` 오는 경우의수
-> - 입력/출력
+- 입력/출력
 > > 2 > 1  
 > > 10 > 3
 - 매커니즘
 > - 그림을 그려가며 f(n) = f(n-1), f(n-2) 경우의 수 찾기
-> - result[i] = result[i-1] + result[i-2]
+> - `result[i] = result[i-1] + result[i-2]`
 ```java
 public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -1188,21 +1188,22 @@ public static void main(String[] args) throws IOException {
 ------------------------------------------------------------------------------------------
 ### [2N 타일링 2 - 11727](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/TwoNTiling2_Main_11727.java)
 - 2*N, `1*2 / 2*1 / 2*2` 오는 경우의수
-> - 입력/출력
+- 입력/출력
 > > 2 > 3  
 > > 8 > 171  
 > > 12 > 2731
 - 매커니즘
 > - 그림을 그려가며 f(n) = f(n-1), f(n-2) 경우의 수 찾기
-> - dp[i] = (dp[i - 1] + dp[i - 2] * 2) % 10007;
+> - `dp[i] = (dp[i - 1] + dp[i - 2] * 2)` % 10007;
 
 ------------------------------------------------------------------------------------------
 ### [1, 2, 3 더하기 - 9095](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/OneTwoThreePlus_Main_9095.java)
 - 정수 N, 1, 2, 3 더해서 만드는 경우의 수
-> - 입력/출력
+- 입력/출력
 ```
+// testCase, N
 3
-4
+4 
 7
 10
 >
@@ -1213,20 +1214,21 @@ public static void main(String[] args) throws IOException {
 - 매커니즘
 > - 점화식 추론
 > > dp[4] = 1+dp[3], 2+dp[2], 3+dp[1]
-> - dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
+> - `dp[i] = dp[i-1] + dp[i-2] + dp[i-3]`
 
 ------------------------------------------------------------------------------------------
 ### [카드 구매하기 - 11052](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Card_Main_11052.java)
 - 카드 팩중 N 개의 카드 가장 비싸게 구매하는 경우값 구하기
 > > i번째 카드는 i개수 카드와 입력비용
-> - 입력/출력
+- 입력/출력
 ```
+// N, i개 i비용 ~
 4
 1 5 6 7 > 10
 ```
 - 매커니즘
 > - 점화식 추론
-> > dp[i] = dp[i-j] + dp[j]
+> > `dp[i] = dp[i-j] + dp[j]`
 ```java
 public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -1251,20 +1253,22 @@ public static void main(String[] args) throws IOException {
 ### [카드 구매하기 2 - 16194](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Card_Main_16194.java)
 - 카드 팩중 N 개의 카드 가장 싸게 구매하는 경우값 구하기
 > > i번째 카드는 i개수 카드와 입력비용
-> - 입력/출력
+- 입력/출력
 ```
+// N, i개 i비용 ~
 4
 1 5 6 7 > 4
 ```
 - 매커니즘
 > - 점화식 추론
-> > dp[i] = dp[i-j] + dp[j]
+> > `dp[i] = dp[i-j] + dp[j]`
 
 ------------------------------------------------------------------------------------------
 ### [!1, 2, 3 더하기 5 - 15990](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/OneTowThreePlusFive_Main_15990_99.java)
 - 정수 N 을 1,2,3 조합의 개수 단, 조합의 연속 숫자가 있으면 안됨
-> - 입력/출력
+- 입력/출력
 ```
+// testCase, N
 3
 4
 7
@@ -1275,10 +1279,10 @@ public static void main(String[] args) throws IOException {
 27
 ```
 - 매커니즘
-> - 점화식 추론: 2차원 배열
-> > dp[i][1] = dp[i-1][2] + dp[i-1][3]  
-> > dp[i][2] = dp[i-1][1] + dp[i-1][3]  
-> > dp[i][3] = dp[i-1][1] + dp[i-1][2]
+> - 점화식 추론: `2차원 배열`
+> > `dp[i][1] = dp[i-1][2] + dp[i-1][3]`  
+> > `dp[i][2] = dp[i-1][1] + dp[i-1][3]`  
+> > `dp[i][3] = dp[i-1][1] + dp[i-1][2]`
 > > > N은 N-1의 2,3 로 끝나는 경우  
 > > > N-2의 1,3로 끝나는 경우  
 > > > N-3의 1,2로 끝나는 경우
@@ -1311,14 +1315,14 @@ public static int stoi(String str) {return Integer.parseInt(str);}
 
 ------------------------------------------------------------------------------------------
 ### [쉬운 계단 수 - 10844](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Stairs_Main_10844.java)
-- 길이 N, 인접 숫자 차이가 1인수
-> - 입력/출력
+- 길이 N, 인접 숫자 차이가 1인수, 0으로 시작 X
+- 입력/출력
 ```
-1 > 9
+1 > 9 // 1,2,3,4,5,6,7,8,9
 2 > 17
 ```
 - 매커니즘 - 점화식 추론
-> dp[n][i] = dp[n-1][i-1] + dp[n-1][i+1]
+> `dp[n][i] = dp[n-1][i-1] + dp[n-1][i+1]`
 ```java
 public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -1350,9 +1354,15 @@ public static void main(String[] args) throws IOException {
 
 ------------------------------------------------------------------------------------------
 ### [이친수 - 2193](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/BinaryNumber_Main_2193.java)
-- 1과 0으로 만 이루어진수 
-> - 입력/ 출력
-> > 3 > 2
+- 이친수
+> - 1과 0으로 만 이루어진수
+> - 0으로 시작하지 않는다,
+> - 1이 두번 나오지 안흔ㄴ다
+- 입력/출력
+```
+// 길이 N(1 <= N <= 90)
+3 > 2
+```
 - 매커니즘
 ```text
 dp[n] = dp[n-1] + dp[n-2]
@@ -1363,6 +1373,7 @@ dp[3] = 100, 101 > 00, 01(뒤의 두자리)
 dp[2] = 10 > 10 
 > 1으로 시작하는 수
 ```
+> `dp[n] = dp[n-1] + dp[n-2]`
 > 점화식
 ```java
 public static void main(String[] args) throws IOException {
@@ -1383,21 +1394,20 @@ public static void main(String[] args) throws IOException {
 ------------------------------------------------------------------------------------------
 ### [가장 긴 증가하는 부분수열 - 110503](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SequenceInc_Main_11053.java)
 - 주어진 수열중에서 가장 긴 증가하는 수열 찾기
-> - 입력/ 출력
+- 입력/출력
 ```
+// 길이 N, 수열
 6
 10 20 10 30 20 50
-> 4
+> 4 // 10 20 30 50
 
 [반례]
 8
 1 8 9 9 9 2 3 4
-> 4
+> 4 // 1 2 3 4
 ```
 - 매커니즘
-```text
-dp[n] = n > j, MAX[dp[n-1 ~ 1]] + 1
-```
+> `dp[n] = n > j, MAX[dp[n-1 ~ 1]] + 1`
 ```java
 public class SequenceInc_Main_11053 {
 
@@ -1431,16 +1441,21 @@ public class SequenceInc_Main_11053 {
 ------------------------------------------------------------------------------------------
 ### [가장 긴 증가하는 부분수열4 - 14002](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SequenceInc4_Main_11053.java)
 - 주어진 수열중에서 가장 긴 증가하는 수열 찾기
-> - 입력/ 출력
+- 입력/출력
 ```
+// 길이 N, 수열
 6
 10 20 10 30 20 50
-> 4
+> 
+4
+10 20 30 50
 
 [반례]
 8
 1 8 9 9 9 2 3 4
-> 4
+> 
+4
+1 2 3 4
 ```
 - 매커니즘
 ```text
@@ -1450,6 +1465,10 @@ List[] list = new List[N];
 dp[n] = n > j, MAX[dp[n-1 ~ 1]] + 1
 list[n] = n > j, list[i].addAll(list[j]).add(nums[n])
 ```
+> 풀이1
+> - `각 dp[i]의 MAX를 구하고 해당 list를 배열에 저장, MAX일 경우 ret`
+> 풀이2
+> - 각 길이 MAX를 정하고 각 order_dp에 count를 저장, 새로운 값일 경우 해당 다음 값에 answer를 저장, 결과는 i>=n--; MAX = count-- 값을 출력
 ```java
 public class SequenceInc_Main_11053 {
 
@@ -1494,6 +1513,148 @@ public class SequenceInc_Main_11053 {
                 .sorted()
                 .forEach(i -> System.out.print(i + " "));
     }
+
+}
+```
+```java
+public static void main(String args[]) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int[] num = new int[n];
+        for(int i=0; i<n; i++) num[i] = Integer.parseInt(st.nextToken());
+
+        int[] answer = new int[n+1];
+
+        int[] order = new int[n];
+
+        int max = 0;
+        for(int i=0; i<n; i++) {
+            int next = num[i];
+            if(answer[max]<next) {
+                answer[++max] = next;
+                order[i] = max;
+            }
+            else if(answer[max]==next) {
+                order[i] = max;
+                continue;
+            }
+            else {
+                // 다음 값이 현재값이 최대 값보다 작은 경우, 현재 값보다 작은 다음 idx에 저장
+                int l = 1;
+                int r = max;
+                while(l<r) {
+                    int mid = (l+r)/2;
+                    if(next<=answer[mid]) r=mid;
+                    else l=mid+1;
+                }
+                order[i] = l;
+                answer[l] = next;
+            }
+        }
+        Stack<Integer> s = new Stack<Integer>();
+        int count = max;
+
+        for(int i=n-1; i>=0; i--)
+            if(order[i]==count) {
+                s.push(num[i]);
+                count--;
+            }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(max).append(System.lineSeparator());
+        while(!s.isEmpty()) {
+            sb.append(s.pop()).append(" ");
+        }
+        System.out.print(sb);
+    }
+```
+
+------------------------------------------------------------------------------------------
+### [연속합 - 1912](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/ContinuousSum_Main_1912.java)
+- 연속된 배열 중 가장 큰 수
+- 입력/출력
+```
+// 길이 N, 배열
+10
+10 -4 3 1 5 6 -35 12 21 -1
+> 33 // 12 + 21
+
+10
+2 1 -4 3 4 -4 6 5 -5 1
+> 14 // 3 4 -4 6 5
+
+5
+-1 -2 -3 -4 -5
+> -1
+```
+- 매커니즘
+> `dp[n] = Math.max(dp[n-1] + nums[i], nums[i])`
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(br.readLine());
+    int[] nums = new int[N];
+    int[] dp = new int[N];
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    for (int i = 0; i < nums.length; i++) {
+        nums[i] = Integer.parseInt(st.nextToken());
+    }
+
+    int MAX = nums[0];
+    dp[0] = nums[0];
+    for (int i = 1; i < nums.length; i++) {
+        int tmp = Math.max(dp[i-1] + nums[i], nums[i]);
+        dp[i] = tmp;
+        MAX = Math.max(MAX, tmp);
+    }
+    System.out.println(MAX);
+}
+```
+
+------------------------------------------------------------------------------------------
+### [제곱수의 합 - 1699](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SquareNum_Main_1699.java)
+- N 보다 작은 제곱수의 합 최소 경우의 수, 1 <= N <= 100_000
+- 입력/출력
+```
+// 길이 N, 배열
+입/출력
+7 > 4
+1 > 1
+4 > 1
+11 > 3
+13 > 2
+
+반례
+753
+# Output
+4
+# Answer
+3 (625 + 64 + 64 = 753)
+```
+- 매커니즘
+> `dp[i] = dp[i - j * j] + 1`
+```java
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
+    N = Integer.parseInt(st.nextToken());
+    dp = new int[N + 1];
+
+    for (int i = 1; i <= N; i++) {
+        dp[i] = i;
+        for (int j = 1; j * j <= i; j++) {
+            if (dp[i] > dp[i - j * j] + 1) {
+                dp[i] = dp[i - j * j] + 1;
+            }
+        }
+    }
+    System.out.println(dp[N]);
 
 }
 ```
