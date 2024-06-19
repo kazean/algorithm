@@ -1677,6 +1677,14 @@ public static void main(String[] args) throws Exception {
 > - `dp[K][N]: K개의 수를 합해 N을 만드는 경우의 수`
 > > ![dp[K][N]](./images/dp_sumUp.png)
 - [참고](https://nahwasa.com/entry/%EB%B0%B1%EC%A4%80-2225-%EC%9E%90%EB%B0%94-%ED%95%A9%EB%B6%84%ED%95%B4-BOJ-2225-JAVA)
+- 입/출력
+```
+// N, K
+20 2 
+> 21
+6 4
+> 84
+```
 ```java
 public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -1759,6 +1767,36 @@ public class Plus123_Main_15988 {
 > - 문제를 보고 점진적으로 조건에 따른 현재 max 값을 dp에 저장하기
 > > 17404 문제 경우, 각 결과 반복하여 dp 구하기
 > > > 코드를 변경하기보다 문제에서 유추 필요
+- 입/출력
+```text
+// test case, rgb 비용
+3
+26 40 83
+49 60 57
+13 89 99
+> 96
+
+3
+1 100 100
+100 1 100
+100 100 1
+> 3
+
+3
+1 100 100
+100 100 100
+1 100 100
+> 102
+
+6
+30 19 5
+64 77 64
+15 19 97
+4 71 57
+90 86 84
+93 32 91
+> 209
+```
 ```java
 // R, G, B 반복
 public static void main(String[] args) throws NumberFormatException, IOException {
@@ -1789,6 +1827,8 @@ public static void main(String[] args) throws NumberFormatException, IOException
 > - 가로, 세로로 붙어 있게 배치 X
 > - 사자를 배치 안하는 경우: 1
 > - N(1 <= N <= 100_000)
+- 입/출력
+> 4 > 41 (길이 N)
 - 매커니즘
 > 점화식
 ```java
@@ -1813,7 +1853,7 @@ public static void main(String[] args) throws IOException {
 > - 수의 길이 N (1 <= N <= 1_000), 오르막 수의 개수, 0으로 시작가능
 - 입/출력
 ```text
-1 > 10
+1 > 10 (길이 N)
 2 > 55
 3 > 220
 ```
