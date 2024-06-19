@@ -1661,13 +1661,21 @@ public static void main(String[] args) throws Exception {
 
 ------------------------------------------------------------------------------------------
 ### [합분해 - 2225](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SumUp_Main_2225.java)
-- 0 ~ N 까지의 정수 K개를 더해서 합이 N이 되는 수
+- 0 ~ N 까지의 정수 K개를 더해서 합이 N이 되는 경우의 수
+- 입출력
+> - 정수 1 <= N <= 200, 1 <= K <= 200
+```
+20 2 > 21
+6 4 > 84
+```
 - 매커니즘
 ```text
 덧셈의 순서가 바뀐 경우는 다른 경우로 센다(1+2와 2+1은 서로 다른 경우). 또한 한 개의 수를 여러 번 쓸 수도 있다.
 > 점화식 K-1개 수를 합해 만든 값 + 0 ~ N 까지의 정수를 더한다면 K-1개의 수로 만든 합에 1개의 정수를 더한 것이므로  
 > K개의 수를 사용해 만든 어떤합이 될것이다.
 ```
+> - `dp[K][N]: K개의 수를 합해 N을 만드는 경우의 수`
+> > ![dp[K][N]](./images/dp_sumUp.png)
 - [참고](https://nahwasa.com/entry/%EB%B0%B1%EC%A4%80-2225-%EC%9E%90%EB%B0%94-%ED%95%A9%EB%B6%84%ED%95%B4-BOJ-2225-JAVA)
 ```java
 public static void main(String[] args) throws IOException {
@@ -1704,10 +1712,14 @@ public static void main(String[] args) throws IOException {
 ------------------------------------------------------------------------------------------
 ## DP1(연습)
 ------------------------------------------------------------------------------------------
-### [1, 2, 3 더하기 3](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Plus123_Main_15988.java)
+### [1, 2, 3 더하기 3 - 15988](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Plus123_Main_15988.java)
+- 정수 n이 주어졌을 때, n을 1, 2, 3의 합으로 나타내는 방법의 수
+- 입/출력
+> - 첫째 줄: 테스크 케이스 T, 정수 N(양수, N <= 1_000_000)
 - 매커니즘
 > - 정수를 1,2,3 합으로 나타내기
-> 1, 2, 3 일때 경우의 수 dp[i-3] + dp[i-2] + dp[i-1]
+> > 1, 2, 3 일때 경우의 수 dp[i-3] + dp[i-2] + dp[i-1] 
+> > > 표 그려보기
 ```java
 public class Plus123_Main_15988 {
     static long[] dp = new long[1000001];
@@ -1735,19 +1747,16 @@ public class Plus123_Main_15988 {
 ```
 
 ------------------------------------------------------------------------------------------
-### [rgb 거리](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/RGB_Main_1149_99.java)
+### [rgb 거리 - 1149](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/RGB_Main_1149_99.java)
+- RGB거리에는 집이 N개, 1번집 ~ N 번집
+> - 집은 빨강, 초록, 파랑 중 하나의 색으로 칠해야 한다, 각 칠하는 비용
+> - 1번집은 2번 집의 색과 같지 않아야 한다.
+> - N번 집의 색은 N-1번 집의 색과 같지 않아야 한다.
+> - i (2 <= i <= N-1)번 집의 색은  i-1, i+1번 집의 색과 같지 않아야 한다
+> - 2 <= N <= 1_000, 비용 <= 1_000
+> > 비용의 최소값
 - 매커니즘
-```text
-문제
-RGB거리에는 집이 N개 있다. 거리는 선분으로 나타낼 수 있고, 1번 집부터 N번 집이 순서대로 있다.
-
-집은 빨강, 초록, 파랑 중 하나의 색으로 칠해야 한다. 각각의 집을 빨강, 초록, 파랑으로 칠하는 비용이 주어졌을 때, 아래 규칙을 만족하면서 모든 집을 칠하는 비용의 최솟값을 구해보자.
-
-1번 집의 색은 2번 집의 색과 같지 않아야 한다.
-N번 집의 색은 N-1번 집의 색과 같지 않아야 한다.
-i(2 ≤ i ≤ N-1)번 집의 색은 i-1번, i+1번 집의 색과 같지 않아야 한다.
-```
-> 문제를 보고 점진적으로 조건에 따른 현재 max 값을 dp에 저장하기
+> - 문제를 보고 점진적으로 조건에 따른 현재 max 값을 dp에 저장하기
 > > 17404 문제 경우, 각 결과 반복하여 dp 구하기
 > > > 코드를 변경하기보다 문제에서 유추 필요
 ```java
@@ -1771,6 +1780,65 @@ public static void main(String[] args) throws NumberFormatException, IOException
     }
     
     System.out.println(Math.min(Math.min(max[n][0], max[n][1]), max[n][2]));
+}
+```
+
+------------------------------------------------------------------------------------------
+### [동물원 - 1309](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Zoo_Prac_Main_1309.java)
+- 가로 두칸, 세로 N칸에 사자 배치 경우의 수
+> - 가로, 세로로 붙어 있게 배치 X
+> - 사자를 배치 안하는 경우: 1
+> - N(1 <= N <= 100_000)
+- 매커니즘
+> 점화식
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(br.readLine());
+    int[] dp = new int[N+1];
+    dp[0] = 1;
+    dp[1] = 3;
+
+    for (int i = 2; i <= N; i++) {
+        dp[i] = (dp[i - 1] * 2 + dp[i - 2]) % 9_901;
+    }
+    System.out.println(dp[N]);
+}
+```
+
+------------------------------------------------------------------------------------------
+### [오르막 수 - 11057](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/AscentCase_Prac_11057_99.java)
+- 수의 자리가 오름차순, 인접한 수가 같아도 오름차순
+> - 가로, 세로로 붙어 있게 배치 X
+> - 수의 길이 N (1 <= N <= 1_000), 오르막 수의 개수, 0으로 시작가능
+- 입/출력
+```text
+1 > 10
+2 > 55
+3 > 220
+```
+- 매커니즘
+> - 이중배열 각 경우의 수 dp
+> > ![오르막수 규칙](./images/ascent_case.png)
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    int[][] dp = new int[n+1][10];
+
+    for (int i = 0; i < 10; i++) {
+        dp[0][i] = 1;
+    }
+
+    for (int i = 1; i < n+1; i++) {
+        for (int j = 0; j < 10; j++) {
+            for (int k = j; k < 10; k++) {
+                dp[i][j] += dp[i-1][k];
+                dp[i][j] %= 10_007;
+            }
+        }
+    }
+    System.out.println(dp[n][0] % 10_007);
 }
 ```
 
