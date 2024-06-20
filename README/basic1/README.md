@@ -1662,20 +1662,21 @@ public static void main(String[] args) throws Exception {
 ------------------------------------------------------------------------------------------
 ### [합분해 - 2225](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SumUp_Main_2225.java)
 - 0 ~ N 까지의 정수 K개를 더해서 합이 N이 되는 경우의 수
-- 입출력
+- 입/출력
 > - 정수 1 <= N <= 200, 1 <= K <= 200
 ```
 20 2 > 21
 6 4 > 84
 ```
+
 - 매커니즘
 ```text
 덧셈의 순서가 바뀐 경우는 다른 경우로 센다(1+2와 2+1은 서로 다른 경우). 또한 한 개의 수를 여러 번 쓸 수도 있다.
 > 점화식 K-1개 수를 합해 만든 값 + 0 ~ N 까지의 정수를 더한다면 K-1개의 수로 만든 합에 1개의 정수를 더한 것이므로  
 > K개의 수를 사용해 만든 어떤합이 될것이다.
 ```
-> - `dp[K][N]: K개의 수를 합해 N을 만드는 경우의 수`
-> > ![dp[K][N]](./images/dp_sumUp.png)
+> - `dp[a][b] / dp[k][n]: K개의 수를 합해 N을 만드는 경우의 수`
+> > ![dp[a][b]](./images/dp_sumUp.png)
 - [참고](https://nahwasa.com/entry/%EB%B0%B1%EC%A4%80-2225-%EC%9E%90%EB%B0%94-%ED%95%A9%EB%B6%84%ED%95%B4-BOJ-2225-JAVA)
 - 입/출력
 ```
@@ -1724,6 +1725,7 @@ public static void main(String[] args) throws IOException {
 - 정수 n이 주어졌을 때, n을 1, 2, 3의 합으로 나타내는 방법의 수
 - 입/출력
 > - 첫째 줄: 테스크 케이스 T, 정수 N(양수, N <= 1_000_000)
+
 - 매커니즘
 > - 정수를 1,2,3 합으로 나타내기
 > > 1, 2, 3 일때 경우의 수 dp[i-3] + dp[i-2] + dp[i-1] 
@@ -1763,10 +1765,6 @@ public class Plus123_Main_15988 {
 > - i (2 <= i <= N-1)번 집의 색은  i-1, i+1번 집의 색과 같지 않아야 한다
 > - 2 <= N <= 1_000, 비용 <= 1_000
 > > 비용의 최소값
-- 매커니즘
-> - 문제를 보고 점진적으로 조건에 따른 현재 max 값을 dp에 저장하기
-> > 17404 문제 경우, 각 결과 반복하여 dp 구하기
-> > > 코드를 변경하기보다 문제에서 유추 필요
 - 입/출력
 ```text
 // test case, rgb 비용
@@ -1797,6 +1795,12 @@ public class Plus123_Main_15988 {
 93 32 91
 > 209
 ```
+
+- 매커니즘
+> - 문제를 보고 점진적으로 조건에 따른 현재 max 값을 dp에 저장하기
+> > 17404 문제 경우, 각 결과 반복하여 dp 구하기
+> > > 코드를 변경하기보다 문제에서 유추 필요
+
 ```java
 // R, G, B 반복
 public static void main(String[] args) throws NumberFormatException, IOException {
@@ -1829,6 +1833,7 @@ public static void main(String[] args) throws NumberFormatException, IOException
 > - N(1 <= N <= 100_000)
 - 입/출력
 > 4 > 41 (길이 N)
+
 - 매커니즘
 > 점화식
 ```java
@@ -1857,6 +1862,7 @@ public static void main(String[] args) throws IOException {
 2 > 55
 3 > 220
 ```
+
 - 매커니즘
 > - 이중배열 각 경우의 수 dp
 > > ![오르막수 규칙](./images/ascent_case.png)
@@ -1879,6 +1885,130 @@ public static void main(String[] args) throws IOException {
         }
     }
     System.out.println(dp[n][0] % 10_007);
+}
+```
+
+------------------------------------------------------------------------------------------
+### [스티커 - 11057](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Sticker_Prac_Main_9465.java)
+- 2*N의 스티커
+> - 선택 스티커 기준 위, 아래, 왼쪽, 오른쪽 찢어짐
+> - 스티커별 점수
+> - N (1 <= N <= 100_000)
+> - 점수 (0 <= 점수 <= 100)
+> > 선택할 수 있는 최대 점수의 스티커
+- 입/출력
+```text
+// 테스크 케이스 T
+// [N
+// 점수1 ...
+// 점수2 ...
+2
+5
+50 10 100 20 40
+30 50 70 10 60
+7
+10 30 10 50 100 20 40
+20 40 30 50 60 20 80
+> 
+260
+290
+```
+
+- 매커니즘
+> - 첫 번째 행부터 ~ N행까지 합 dp 
+```java
+static int[][] fieldArr;
+
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int caseNum = Integer.parseInt(br.readLine());
+    for (int i = 0; i < caseNum; i++) {
+        int n = Integer.parseInt(br.readLine());
+        int[][] dp = new int[2][n+1];
+        fieldArr = new int[2][n+1];
+
+        for (int j = 0; j < 2; j++) {
+            int[] numArr = Arrays.stream(br.readLine().split(" "))
+                    .mapToInt(Integer::parseInt)
+                    .toArray();
+            fieldArr[j] = numArr;
+        }
+
+        dp[0][0] = 0;
+        dp[1][0] = 0;
+        dp[0][1] = fieldArr[0][0];
+        dp[1][1] = fieldArr[1][0];
+
+        for (int j = 2; j <= n; j++) {
+            dp[0][j] = Math.max(dp[1][j - 1], dp[1][j - 2]) + fieldArr[0][j-1];
+            dp[1][j] = Math.max(dp[0][j - 1], dp[0][j - 2]) + fieldArr[1][j-1];
+        }
+
+        System.out.println(Math.max(dp[0][n], dp[1][n]));
+    }
+}
+```
+
+------------------------------------------------------------------------------------------
+### [!포도주 시식 - 2156](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/Wine_Prac_Main_2156_99.java)
+- 될 수 있는 대로 많은 양의 포도주 맛보기
+> - 첫째 줄에 포도주 잔의 개수 n이 주어진다. (1 ≤ n ≤ 10,000)
+> - 둘째 줄부터 n+1번째 줄까지 포도주 잔에 들어있는 포도주의 양이 순서대로 주어진다.
+> - 포도주의 양은 1,000 이하의 음이 아닌 정수이다.
+> - 연속으로 놓여있는 세잔을 마실 수 없다 
+> > 먹은 포도주의 양
+- 입/출력
+```text
+// N
+// i 번째 포도주 양
+6
+6
+10
+13
+9
+8
+1
+> 33
+
+반례
+6
+100
+100
+0
+0
+100
+100
+> 400
+```
+
+- 매커니즘
+> - [참고](https://st-lab.tistory.com/135)
+> - Bottom-Up, Top-Down
+> - `dp[i] = Math.max(dp[i-1], Math.max((dp[i-2] + field[i]), (dp[i-3] + field[i-1] + field[i])));`
+> > `현재 dp[i] 값은 이전 dp[i-1], dp[i-2] + 현재_field, dp[i-3] + 현재_field`
+> > > 현재 선택된 값이 최대 값이 아닐 수도 있음으로(연속 세잔 제한때문)
+```java
+static int N;
+static int[] field;
+static int[] dp;
+public static void main(String[] args) throws Exception{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    N = Integer.parseInt(br.readLine());
+    field = new int[N+1];
+    dp = new int[N+1];
+
+    for (int i = 1; i <= N; i++) {
+        field[i] = Integer.parseInt(br.readLine());
+    }
+
+    dp[1] = field[1];
+
+    if(N > 1) dp[2] = field[1] + field[2];
+
+    for (int i = 3; i <= N; i++) {
+        dp[i] = Math.max(dp[i-1], Math.max((dp[i-2] + field[i]), (dp[i-3] + field[i-1] + field[i])));
+    }
+    System.out.println(dp[N]);
 }
 ```
 
