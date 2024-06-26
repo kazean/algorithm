@@ -1985,7 +1985,7 @@ public static void main(String[] args) throws IOException {
 > - [참고](https://st-lab.tistory.com/135)
 > - Bottom-Up, Top-Down
 > - `dp[i] = Math.max(dp[i-1], Math.max((dp[i-2] + field[i]), (dp[i-3] + field[i-1] + field[i])));`
-> > `현재 dp[i] 값은 이전 dp[i-1], dp[i-2] + 현재_field, dp[i-3] + 현재_field`
+> > `현재 dp[i] 값은 이전 dp[i-1], dp[i-2] + 현재_field, dp[i-3] + 이전_field + 현재_field`
 > > > 현재 선택된 값이 최대 값이 아닐 수도 있음으로(연속 세잔 제한때문)
 ```java
 static int N;
