@@ -2013,6 +2013,137 @@ public static void main(String[] args) throws Exception{
 ```
 
 ------------------------------------------------------------------------------------------
+### [정수 삼각형 - 1932](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/EssenceTriangle_Prac_Main_1932.java)
+- 맨 위에서 아래까지 내려올때 최대 수의 합, 현재 값에서 윗 라인에 대각선 좌우 이동가능
+- 삼각형 크기 1 <= N <= 500
+- 0 <= 정수 <= 9999
+- 입/출력
+> - 입력
+> > - 첫째 줄: 삼각형 크기(N)
+> > - 둘째 줄 ~ N+1번째 줄 정수 삼각형
+> - 출력
+> > 경로에 있는 수의 합
+```text
+5
+7
+3 8
+8 1 0
+2 7 4 4
+4 5 2 6 5
+> 30
+```
+
+- 매커니즘
+> - Bottom-Up
+```java
+for(int i = 0; i < N - 1; i++) {
+    for (int j = 0; j <= i; j++) {
+        dp[i + 1][j] = Math.max(dp[i + 1][j], (dp[i][j] + fields[i + 1][j]));
+        if (j + 1 < N) {
+            dp[i + 1][j + 1] = Math.max(dp[i + 1][j + 1], (dp[i][j] + fields[i + 1][j + 1]));
+        }
+    }
+}
+```
+```java
+static int N;
+static int[][] fields;
+static int[][] dp;
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    N = Integer.parseInt(br.readLine());
+    fields = new int[N][N];
+    dp = new int[N][N];
+
+    for(int i = 0; i < N; i++) {
+        fields[i] = Arrays.stream(br.readLine().split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+    }
+
+    dp[0][0] = fields[0][0];
+    for(int i = 0; i < N - 1; i++) {
+        for (int j = 0; j <= i; j++) {
+            dp[i + 1][j] = Math.max(dp[i + 1][j], (dp[i][j] + fields[i + 1][j]));
+            if (j + 1 < N) {
+                dp[i + 1][j + 1] = Math.max(dp[i + 1][j + 1], (dp[i][j] + fields[i + 1][j + 1]));
+            }
+        }
+    }
+
+    int result = Integer.MIN_VALUE;
+    for (int i = 0; i < N; i++) {
+        if(dp[N-1][i] > result)
+            result = dp[N - 1][i];
+    }
+    System.out.println(result);
+
+}
+```
+
+------------------------------------------------------------------------------------------
+### [가장 긴 증가하는 수열 - 11055](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/SequenceInc_Prac_Main_11055.java)
+- 그 수열의 증가하는 부분 수열 중에서 합이 가장 큰 것을 구하는 프로그램
+- 입/출력
+> - 입력
+> > - 첫째 줄에 수열 A의 크기 N (1 ≤ N ≤ 1,000)이 주어진다.
+> > - 둘째 줄에는 수열 A를 이루고 있는 Ai가 주어진다. (1 ≤ Ai ≤ 1,000)
+> - 출력
+> > 첫째 줄에 수열 A의 합이 가장 큰 증가하는 부분 수열의 합을 출력한다.
+```text
+10
+1 100 2 50 60 3 5 6 7 8
+> 113
+```
+
+- 매커니즘
+> - Bottom-Up
+```java
+for(int i = 0; i < N - 1; i++) {
+    for (int j = 0; j <= i; j++) {
+        dp[i + 1][j] = Math.max(dp[i + 1][j], (dp[i][j] + fields[i + 1][j]));
+        if (j + 1 < N) {
+            dp[i + 1][j + 1] = Math.max(dp[i + 1][j + 1], (dp[i][j] + fields[i + 1][j + 1]));
+        }
+    }
+}
+```
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    int sum = 0;
+    int[] numArr = Arrays.stream(br.readLine().split(" "))
+            .mapToInt(Integer::parseInt)
+            .toArray();
+
+    int[] dp = new int[n];
+    for (int i = 0; i < n; i++) {
+        dp[i] = numArr[i];
+        int tmpResult = 0;
+        boolean flag = false;
+        for (int j = i-1; j >= 0; j--) {
+            if (numArr[i] > numArr[j]) {
+//                    dp[i] += dp[j];
+                tmpResult = Math.max(tmpResult, dp[i] + dp[j]);
+                flag = true;
+            }
+        }
+        if (flag) {
+            dp[i] = tmpResult;
+        }
+    }
+
+    int maxResult = 0;
+    for (int i = 0; i < n; i++) {
+        maxResult = Math.max(maxResult, dp[i]);
+    }
+    System.out.println(maxResult);
+
+}
+```
+
+------------------------------------------------------------------------------------------
 
 
 
