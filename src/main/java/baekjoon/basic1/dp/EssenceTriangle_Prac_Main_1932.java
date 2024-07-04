@@ -48,7 +48,7 @@ public class EssenceTriangle_Prac_Main_1932 {
             for (int j = 0; j <= i; j++) {
                 dp[i + 1][j] = Math.max(dp[i + 1][j], (dp[i][j] + fields[i + 1][j]));
                 if (j + 1 < N) {
-                    dp[i + 1][j + 1] = Math.max(dp[i + 1][j + 1], (dp[i][j] + fields[i + 1][j + 1]));
+                    dp[i + 1][j + 1] = dp[i][j] + fields[i + 1][j + 1];
                 }
             }
         }
