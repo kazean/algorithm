@@ -2446,6 +2446,90 @@ public static void main(String[] args) throws IOException {
 ```
 
 ------------------------------------------------------------------------------------------
+### [!타일 채우기 - 2133](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/ThreeNTile_Prac_Main_2133_99.java)
+- 3×N 크기의 벽을 2×1, 1×2 크기의 타일로 채우는 경우의 수를 구해보자.
+- 입/출력
+> - 입력
+> > - 첫째 줄에 N(1 ≤ N ≤ 30)이 주어진다.
+> - 출력
+> > 첫째 줄에 경우의 수를 출력한다.
+```text
+2
+> 3
+3
+> 0
+4
+> 11
+5
+> 0
+6
+> 41
+```
+
+- 매커니즘
+> - [참고](https://hello-backend.tistory.com/156)
+> - 3x1의 경우 => 0개
+> - 3x2의 경우 => 3개
+> - 3x3의 경우 => 0개
+> - 3x4의 경우, 3x2의 경우 * 3(3x1) + 특별 케이스 2개 => 11
+> - 3x5의 경우 => 0개 
+> - 3x6의 경우 3x4의 경우, * 3 + 그 전전의 전체 타일 개수 X 이전타일의 특별한 타일 개수 + 특별케이스 2개
+> > 11 * 3 + (3 * 2) + 2 => 41
+> - 3x8의 경우, 41 * 3 + (11 * 2 + 3 * 2) + 2
+```java
+for (int i = 4; i <= N; i++) {
+    dp[i] = dp[i - 2] * 3;
+    for (int j = 4; j <= i; j += 2) {
+        dp[i] += dp[i - j] * 2;
+    }
+}
+```
+> - 현재 값에서 증가, 감소하는 두 dp배열을 구해서 합한다
+> - dp배열은 현재 값까지의 길이
+```java
+public class BitonicInc_Prac_Main_11054 {
+    static int N;
+    static int[] fields, dpInc, dpDec;
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
+        dpInc = new int[N];
+        dpDec = new int[N];
+        fields = Arrays.stream(br.readLine().split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        for(int i = 0; i < fields.length; i++) {
+            dpInc[i] = 1;
+            int field = fields[i];
+            for(int j = i - 1; j >= 0; j--) {
+                if(field > fields[j] && dpInc[i] < dpInc[j] + 1){
+                    dpInc[i] = dpInc[j] + 1;
+                }
+            }
+        }
+
+        for(int i = fields.length -1; i >= 0; i--) {
+            dpDec[i] = 1;
+            int field = fields[i];
+            for (int j = i + 1; j < fields.length; j++) {
+                if (field > fields[j] && dpDec[i] < dpDec[j] + 1) {
+                    dpDec[i] = dpDec[j] + 1;
+                }
+            }
+        }
+
+        int result = 0;
+        for (int i = 0; i < N; i++) {
+            result = Math.max(result, dpInc[i] + dpDec[i] -1);
+        }
+        System.out.println(result);
+    }
+}
+```
+
+------------------------------------------------------------------------------------------
 
 
 
