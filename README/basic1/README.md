@@ -2487,45 +2487,23 @@ for (int i = 4; i <= N; i++) {
 > - 현재 값에서 증가, 감소하는 두 dp배열을 구해서 합한다
 > - dp배열은 현재 값까지의 길이
 ```java
-public class BitonicInc_Prac_Main_11054 {
-    static int N;
-    static int[] fields, dpInc, dpDec;
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(br.readLine());
 
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        dpInc = new int[N];
-        dpDec = new int[N];
-        fields = Arrays.stream(br.readLine().split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+    int[] dp = new int[32];
+    dp[0] = 1;
+    dp[2] = 3;
 
-        for(int i = 0; i < fields.length; i++) {
-            dpInc[i] = 1;
-            int field = fields[i];
-            for(int j = i - 1; j >= 0; j--) {
-                if(field > fields[j] && dpInc[i] < dpInc[j] + 1){
-                    dpInc[i] = dpInc[j] + 1;
-                }
-            }
+    for (int i = 4; i <= N; i++) {
+        dp[i] = dp[i - 2] * 3;
+        for (int j = 4; j <= i; j += 2) {
+            dp[i] += dp[i - j] * 2;
         }
-
-        for(int i = fields.length -1; i >= 0; i--) {
-            dpDec[i] = 1;
-            int field = fields[i];
-            for (int j = i + 1; j < fields.length; j++) {
-                if (field > fields[j] && dpDec[i] < dpDec[j] + 1) {
-                    dpDec[i] = dpDec[j] + 1;
-                }
-            }
-        }
-
-        int result = 0;
-        for (int i = 0; i < N; i++) {
-            result = Math.max(result, dpInc[i] + dpDec[i] -1);
-        }
-        System.out.println(result);
     }
+
+    System.out.println(dp[N]);
+
 }
 ```
 
