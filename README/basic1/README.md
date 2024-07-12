@@ -2515,45 +2515,70 @@ public static void main(String[] args) throws IOException {
 ------------------------------------------------------------------------------------------
 ## DP1(도전)
 ------------------------------------------------------------------------------------------
-### [rgb 거리2](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/RGB_Main_1149_99.java)
+### [!RGB거리 2 - 2133](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic1/dp/RGB2_Chal_Main_17404_99.java)
+- RGB 색칠할 수 있는 N개집
+- 1번 집의 색은 2번, N번 집의 색과 같지 않아야 한다.
+- N번 집의 색은 N-1번, 1번 집의 색과 같지 않아야 한다.
+- i(2 ≤ i ≤ N-1)번 집의 색은 i-1, i+1번 집의 색과 같지 않아야 한다.
+- 입/출력
+> - 입력
+> > - 첫째 줄에 집의 수 N(2 ≤ N ≤ 1,000)이 주어진다.
+> > - 둘째 줄부터 N개의 줄에는 각 집을 빨강, 초록, 파랑으로 칠하는 비용이 1번 집부터 한 줄에 하나씩 주어진다. 집을 칠하는 비용은 1,000보다 작거나 같은 자연수이다.
+> - 출력
+> > 첫째 줄에 모든 집을 칠하는 비용의 최솟값을 출력한다.
+```text
+2
+> 3
+3
+> 0
+4
+> 11
+5
+> 0
+6
+> 41
+```
+
+- 매커니즘
+> - 기본 RGB거리 계산하는 dp
+> - `단, 첫번째를 선택을 고정하여 dp`
 ```java
-public static void main(String[] args) throws IOException {
-    n = Integer.parseInt(br.readLine());
-    arr = new int[n + 1][3];
-    dp = new int[n + 1][3];
-
-    // 입력 값 저장
-    for(int i = 1 ; i <= n; i++){
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        for(int j = 0 ; j < 3; j++){
-            arr[i][j] = Integer.parseInt(st.nextToken());
-        }
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        if (i == j) dp[1][j] = arr[1][i];
+        else dp[1][j] = 1_000_001;
     }
 
-    // k = 0 -> RED, 1 -> GREEN, 2 -> BLUE로 첫 집을 칠하는 경우이다.
-    for(int k = 0; k < 3; k++) {
-        //RED, GREEN, BLUE로 칠하는 경우 각 색을 제외한 나머지는 INF로 초기화 해준다.
-        for(int i = 0 ; i < 3; i++) {
-            if(i == k) dp[1][i] = arr[1][i];
-            else dp[1][i] = INF;
-        }
-
-        // 열의 값인 0 -> RED, 1 -> GREEN, 2 -> BLUE로 칠했을 때의 최소값을 의미한다.
-        for (int i = 2; i <= n; i++) {
-            dp[i][0] = Math.min(dp[i - 1][1], dp[i - 1][2]) + arr[i][0];
-            dp[i][1] = Math.min(dp[i - 1][0], dp[i - 1][2]) + arr[i][1];
-            dp[i][2] = Math.min(dp[i - 1][0], dp[i - 1][1]) + arr[i][2];
-        }
-
-        // 정답인 최솟값을 구하는 부분
-        for(int i = 0 ; i < 3; i++)
-            if(i != k) answer = Math.min(answer, dp[n][i]);
+    for (int j = 2; j <= n; j++) {
+        dp[j][0] = Math.min(dp[j - 1][1], dp[j - 1][2]) + arr[j][0];
+        dp[j][1] = Math.min(dp[j - 1][0], dp[j - 1][2]) + arr[j][1];
+        dp[j][2] = Math.min(dp[j - 1][0], dp[j - 1][1]) + arr[j][2];
     }
 
-
-    bw.write(answer + "\n");
-
-    bw.close();
-    br.close();
+    for (int j = 0; j < 3; j++) {
+        if(i != j) answer = Math.min(answer, dp[n][j]);
+    }
 }
 ```
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(br.readLine());
+
+    int[] dp = new int[32];
+    dp[0] = 1;
+    dp[2] = 3;
+
+    for (int i = 4; i <= N; i++) {
+        dp[i] = dp[i - 2] * 3;
+        for (int j = 4; j <= i; j += 2) {
+            dp[i] += dp[i - j] * 2;
+        }
+    }
+
+    System.out.println(dp[N]);
+
+}
+```
+
+------------------------------------------------------------------------------------------
