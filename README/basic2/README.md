@@ -9,6 +9,7 @@
 
 ---------------------------------------------------------------------------------------
 ## 1. 브루트 포스
+------------------------------------------------------------------------------------------
 조합 가능한 모든 문자열을 하나씩 대입해보는 방식(전체탐색)
 - [일곱 난쟁이](#일곱-난쟁이---2309)
 - [N과 M]()
@@ -20,8 +21,12 @@
 ### [일곱 난쟁이 - 2309](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/Dwarf_Main_2309.java)
 - Brute Force - Basic
 - 9명의 난쟁이중 7난쟁이 찾기 7명의 합의 키가 100 인경우
-> - 입력/출력
-```
+- 입/출력
+> - 입력
+> > - 9줄의 각 난쟁이들키
+> - 출력
+> > 7명의 난쟁이 키의 합이 100이 되는 난쟁이 들키
+```txt
 20
 7
 23
@@ -43,52 +48,102 @@
 - 매커니즘
 > - DFS
 > > 해당 배열을 전체 탐색, 재귀방식 depth == 결과값 return
-- code
+> > - code cf
+> > > 매개변수로 전달시 값 유지
+> - 이중 for문
+> > 전체 9명의 키를 더한 다음 2명을 제외 했을때 합이 100이 되는 경우
+- code - DFS
 ```java
-public class Dwarf_Main_2309 {
-    static int[] field = new int[9];
-    static boolean[] visited = new boolean[9];
-    static boolean flag = false;
+static int[] fields = new int[9];
+static boolean[] visited = new boolean[9];
+static boolean resultFlag = false;
 
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        for (int i = 0; i < field.length; i++) {
-            field[i] = Integer.parseInt(br.readLine());
-        }
-
-        dp(0, 0, 0);
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    for (int i = 0; i < 9; i++) {
+        fields[i] = Integer.parseInt(br.readLine());
     }
 
-    public static void dp(int index, int depth, int sum) {
-        if (flag) {
-            return;
-        }
-        if (sum == 100 && depth == 7) {
-            List<Integer> results = new ArrayList<>();
-            for (int i = 0; i < visited.length; i++) {
-                if(visited[i]) results.add(field[i]);
+    dfs(0, 0, 0);
+
+}
+
+public static void dfs(int index, int depth, int sum) {
+    if (resultFlag) {
+        return;
+    }
+    if (depth == 7 && sum == 100) {
+        resultFlag = true;
+        int[] results = new int[7];
+        int resultIndex = 0;
+        for (int i = 0; i < 9; i++) {
+            if (visited[i]) {
+                results[resultIndex++] = fields[i];
             }
-
-            results.stream()
-                    .sorted()
-                    .forEach(System.out::println);
-            flag = true;
-            return;
         }
+        Arrays.sort(results);
+        for (int i = 0; i < 7; i++) {
+            System.out.println(results[i]);
+        }
+        return;
+    }
 
-        for (int i = index; i < field.length; i++) {
-            if (flag) break;
-            if (!visited[i]) {
-                visited[i] = true;
-                dp(index+1, depth+1, sum + field[i]);
-                visited[i] = false;
+    for (int i = index; i < 9; i++) {
+        if (!visited[i] && depth < 7 && sum < 100) {
+            visited[i] = true;
+            dfs(index + 1, depth + 1, sum + fields[i]);
+            visited[i] = false;
+        }
+    }
+}
+```
+- code2 - Impl
+```java
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    int[] arr = new int[9];
+    int sum = 0;
+
+    for (int i = 0; i < 9; i++) {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+
+        arr[i] = n;
+        sum += n;
+    }
+
+    Arrays.sort(arr);
+
+    for (int i = 0; i < 9; i++) {
+        for (int j = i + 1; j < 9; j++) {
+            if(sum - (arr[i] + arr[j]) == 100) {
+                for (int z = 0; z < 9; z++) {
+                    if(i == z || j == z) continue;
+                    System.out.println(arr[z]);
+                }
+                return;
             }
         }
     }
 }
 ```
 
+------------------------------------------------------------------------------------------
+### [일곱 난쟁이 - 2309](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/Dwarf_Main_2309.java)
+- 
+- 입/출력
+> - 입력
+> - 출력
+```txt
+
+```
+- 매커니즘
+> - 
+- code 
+```java
+
+```
 ------------------------------------------------------------------------------------------
 ### [N과 M - 2309](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/NM_Main_15649_99.java)
 - Brute Force - N과M
