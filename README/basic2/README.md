@@ -130,19 +130,174 @@ public static void main(String[] args) throws IOException {
 ```
 
 ------------------------------------------------------------------------------------------
-### [일곱 난쟁이 - 2309](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/Dwarf_Main_2309.java)
-- 
+### [사탕게임 - 3085](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/CandyGame_Main_3085_99.java)
+- N×N크기에 사탕을 채워 놓는다
+- 사탕의 색이 다른 인접한 두 칸을 고른다, 그 다음 고른 칸에 들어있는 사탕을 서로 교환한다
+- 모두 같은 색으로 이루어져 있는 가장 긴 연속 부분(행 또는 열)을 고른 다음 그 사탕을 모두 먹는다.
+> 사탕이 채워진 상태가 주어졌을 때, 상근이가 먹을 수 있는 사탕의 최대 개수를 구하는 프로그램을 작성하시오.
 - 입/출력
 > - 입력
+> > - 첫째 줄 크기 N (3 ≤ N ≤ 50)
+> > - 다음 N개 줄에는 보드에 채워져 있는 사탕의 색상이 주어진다. 빨간색은 C, 파란색은 P, 초록색은 Z, 노란색은 Y로 주어진다.
+> > - 사탕의 색이 다른 인접한 두 칸이 존재하는 입력만 주어진다.
 > - 출력
+> > 먹을 수 있는 사탕의 최대 개수
 ```txt
-
+3
+CCP
+CCP
+PPC
+> 3
+4
+PPPP
+CYZY
+CCPY
+PPCC
+> 4
+5
+YCPZY
+CYZZP
+CCPPP
+YCYZC
+CPPZZ
+> 4
+3
+ZCY
+ZCP
+PYZ
+> 2
 ```
 - 매커니즘
-> - 
+> - 인접한(행 혹은 열 다 포함) 사탕끼리 색을 바꿔준다.
+> - 가장 긴 수열을 찾아준다.
+> - 바꿔준 사탕의 색을 돌려준다.
 - code 
 ```java
+public class CandyGame_Main_3085_99 {
+    static int max = 1;
+    static int N;
+    static char[][] board;
 
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
+        board = new char[N][N];
+        for (int i = 0; i < N; i++) {
+            String s = br.readLine();
+            for (int j = 0; j < N; j++) {
+                board[i][j] = s.charAt(j);
+            }
+        }
+        // 행을 기준으로 오른쪽 색과 변경
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N - 1; j++) {
+                swap(i, j, i, j + 1);
+                search();
+                swap(i, j + 1, i, j);
+            }
+        }
+        // 열을 기준으로 아래쪽 색과 변경
+        for (int i = 0; i < N - 1; i++) {
+            for (int j = 0; j < N; j++) {
+                swap(i, j, i + 1, j);
+                search();
+                swap(i + 1, j, i, j);
+            }
+        }
+        System.out.println(max);
+        br.close();
+    }
+
+    public static void swap(int x1, int y1, int x2, int y2) {
+        char temp = board[x1][y1];
+        board[x1][y1] = board[x2][y2];
+        board[x2][y2] = temp;
+    }
+
+    public static void search() {
+        // 행에서 긴 수열 탐색
+        for (int i = 0; i < N; i++) {
+            int count = 1;
+            for (int j = 0; j < N - 1; j++) {
+                if (board[i][j] == board[i][j + 1]) {
+                    count++;
+                    max = Math.max(count, max);
+                } else {
+                    count = 1;
+                }
+            }
+        }
+        // 열에서 긴 수열 탐색
+        for (int i = 0; i < N; i++) {
+            int count = 1;
+            for (int j = 0; j < N - 1; j++) {
+                if (board[j][i] == board[j + 1][i]) {
+                    count++;
+                    max = Math.max(count, max);
+                } else {
+                    count = 1;
+                }
+            }
+        }
+    }
+}
+```
+------------------------------------------------------------------------------------------
+### [날짜계산 - 1476](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/CandyGame_Main_3085_99.java)
+- E(지구), S(태양), M(달) 입력  (1 ≤ E ≤ 15, 1 ≤ S ≤ 28, 1 ≤ M ≤ 19)
+- 해당 수는 년도를 의미, 1년이 지날때마다 +1, 숫자를 넘어가면 1
+> 실제 년도 구하기
+- 입/출력
+> - 입력
+> > - E(지구), S(태양), M(달) 입력  (1 ≤ E ≤ 15, 1 ≤ S ≤ 28, 1 ≤ M ≤ 19)
+> - 출력
+> > 실제 년도 구하기
+```txt
+1 16 16
+> 16
+1 1 1
+> 1
+1 2 3
+> 5266
+```
+- 매커니즘
+> - 해당 수를 증가시키면서 실제 년도 구하는 로직 전체탐색
+- code 
+```java
+public class DataCal_Main_1476 {
+    static int E, S, M;
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        E = S = M = 0;
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        E = Integer.parseInt(st.nextToken());
+        S = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
+        int result = 0;
+        int tmpE, tmpS, tmpM;
+        tmpE = tmpS = tmpM = 0;
+
+        while (!(tmpE == E && tmpS == S && tmpM == M)) {
+            tmpE+=1;
+            tmpS+=1;
+            tmpM+=1;
+            if (tmpE == 16) {
+                tmpE = 1;
+            }
+            if (tmpS == 29) {
+                tmpS = 1;
+            }
+            if (tmpM == 20) {
+                tmpM = 1;
+            }
+            result++;
+        }
+
+        System.out.println(result);
+    }
+}
 ```
 ------------------------------------------------------------------------------------------
 ### [N과 M - 2309](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/NM_Main_15649_99.java)
