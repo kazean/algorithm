@@ -61,6 +61,7 @@ public class Tetromino_Main_14500 {
 
 
     public static void terominoInit() {
+        // 대칭 회전 추가하기
         terominos = new boolean[5][][];
         // 일자
         terominos[0] = new boolean[][]{{true, true, true, true}};
