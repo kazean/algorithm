@@ -300,6 +300,77 @@ public class DataCal_Main_1476 {
 }
 ```
 ------------------------------------------------------------------------------------------
+### [리모컨 - 1107](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/Remote_Main_1107_99.java)
+- TV 채널 0~9버튼, +. - 버튼, 현재 채널: 100, 이동하려는 채널: N
+- 고장난 버튼 0 ~ 9중 M개
+> 이동하기 위한 최소 버튼 개수 구하기
+- 입/출력
+> - 입력
+> > - 첫째 줄 이동하려고 하는 채널 N (0 ≤ N ≤ 500,000)
+> > - 둘째 줄에는 고장난 버튼의 개수 M (0 ≤ M ≤ 10)
+> - 출력
+> > 이동하기 위한 최소 버튼 개수 구하기
+```txt
+5457
+3
+6 7 8
+> 6
+5 4 5 5 + +
+
+
+// 현재 예외
+80000
+2
+8 9
+> 2228
+500000
+8
+0 2 3 4 6 7 8 9
+> 11117
+```
+- 매커니즘
+> - 0 ~ 500,000번 채널 전체 탐색
+- code 
+```java
+public class Remote_Main_1107_99 {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+
+        int size = sc.nextInt();
+
+        //0-9 까지의 수 중 고장난 채널이 있는지 확인하기 위한 배열
+        boolean[] broken = new boolean[10];
+        for (int i = 0; i < size; i++) {
+            broken[sc.nextInt()] = true;
+        }
+        //N-100을 RESULT의 초기값으로 주는 이유는 현재 채널이 100부터 시작하기 때문이다.
+        int result = Math.abs(N - 100);
+
+        //그냥 0부터 999999까지 전부 확인한다.
+        for (int i = 0; i <= 999999; i++) {
+            String num = String.valueOf(i);
+
+            boolean isBreak = false;
+            for (int j = 0; j < num.length(); j++) {
+                if (broken[num.charAt(j) - '0']) {
+                    //고장난 버튼을 눌러야 하면 멈춘다.
+                    isBreak = true;
+                    break;
+                }
+            }
+            if (!isBreak) {
+                //버튼을 누르는 횟수 중 가장 적은 횟수를 result에 담는다.
+                int min = Math.abs(N - i) + num.length();
+                result = Math.min(min, result);
+            }
+        }
+        System.out.println(result);
+    }
+
+}
+```
+------------------------------------------------------------------------------------------
 ### [N과 M - 2309](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/NM_Main_15649_99.java)
 - Brute Force - N과M
 - 정수 N, M / 길이 M / 1 ~ N 까지의 수열 사전순 출력
