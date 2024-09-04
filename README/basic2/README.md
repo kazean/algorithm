@@ -371,6 +371,119 @@ public class Remote_Main_1107_99 {
 }
 ```
 ------------------------------------------------------------------------------------------
+### [테트로미노 - 14500](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/Tetromino_Main_14500_99.java)
+- 
+- 입/출력
+> - 입력
+> > - 종이의 세로 크기 N과 가로 크기 M이 주어진다. (4 ≤ N, M ≤ 500)
+> > - 테트로미노는 반드시 한 정사각형이 정확히 하나의 칸을 포함하도록 놓아야 하며, 회전이나 대칭을 시켜도 된다.
+> - 출력
+> > 테트로미노가 놓인 칸에 쓰인 수들의 합의 최댓값을 출력
+```txt
+5 5
+1 2 3 4 5
+5 4 3 2 1
+2 3 4 5 6
+6 5 4 3 2
+1 2 1 2 1
+> 19
+
+4 5
+1 2 3 4 5
+1 2 3 4 5
+1 2 3 4 5
+1 2 3 4 5
+> 20
+
+4 10
+1 2 1 2 1 2 1 2 1 2
+2 1 2 1 2 1 2 1 2 1
+1 2 1 2 1 2 1 2 1 2
+2 1 2 1 2 1 2 1 2 1
+> 7
+```
+- 매커니즘
+> - 테트로미노 만들기 DFS 전체탐색
+- code 
+```java
+public class Tetromino_Main_14500_99 {
+    static int max = Integer.MIN_VALUE;
+    static int[][] arr;
+    static boolean[][] visit;
+    static int n;
+    static int m;
+
+    // 상하좌우
+    static int[] dx = {-1,1,0,0};
+    static int[] dy = {0,0,-1,1};
+
+    public static void main(String[] args) throws NumberFormatException, IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+        arr = new int[n][m];
+        visit = new boolean[n][m];
+
+        // 입력
+        for(int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            for(int j = 0; j < m; j++) {
+                arr[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        // 전체 탐색 (dfs)
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                visit[i][j] = true;
+                solve(i,j,arr[i][j],1);
+                visit[i][j] = false;
+            }
+        }
+
+        System.out.println(max);
+    }
+
+    static void solve(int row, int col, int sum, int count) {
+
+        // 테트로미노 완성 시 수들의 합 계산
+        if(count == 4) {
+            max = Math.max(max, sum);
+            return;
+        }
+
+        // 상하좌우 탐색
+        for(int i = 0; i < 4; i++) {
+            int curRow = row + dx[i];
+            int curCol = col + dy[i];
+
+            // 범위 벗어나면 예외 처리
+            if(curRow < 0 || curRow >= n || curCol < 0 || curCol >= m) {
+                continue;
+            }
+
+            // 아직 방문하지 않은 곳이라면
+            if(!visit[curRow][curCol]) {
+
+                // 보라색(ㅗ) 테트로미노 만들기 위해 2번째 칸에서 탐색 한번 더 진행
+                if(count == 2) {
+                    visit[curRow][curCol] = true;
+                    solve(row, col, sum + arr[curRow][curCol], count + 1);
+                    visit[curRow][curCol] = false;
+                }
+
+                visit[curRow][curCol] = true;
+                solve(curRow, curCol, sum + arr[curRow][curCol], count + 1);
+                visit[curRow][curCol] = false;
+            }
+        }
+    }
+}
+```
+------------------------------------------------------------------------------------------
 ### [N과 M - 2309](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/NM_Main_15649_99.java)
 - Brute Force - N과M
 - 정수 N, M / 길이 M / 1 ~ N 까지의 수열 사전순 출력
