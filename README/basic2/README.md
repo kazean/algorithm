@@ -484,6 +484,21 @@ public class Tetromino_Main_14500_99 {
 }
 ```
 ------------------------------------------------------------------------------------------
+### [카잉달력 - 6064](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/Caring_Main_6064_99.java)
+- 
+- 입/출력
+> - 입력
+> - 출력
+```txt
+
+```
+- 매커니즘
+> - 테트로미노 만들기 DFS 전체탐색
+- code 
+```java
+
+```
+------------------------------------------------------------------------------------------
 ### [N과 M - 2309](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/NM_Main_15649_99.java)
 - Brute Force - N과M
 - 정수 N, M / 길이 M / 1 ~ N 까지의 수열 사전순 출력
