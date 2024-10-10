@@ -1,6 +1,6 @@
 package baekjoon.basic2.bruteforce;
 /**
- *
+ * 시간초과
  */
 /*
 3
