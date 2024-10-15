@@ -372,7 +372,6 @@ public class Remote_Main_1107_99 {
 ```
 ------------------------------------------------------------------------------------------
 ### [테트로미노 - 14500](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/Tetromino_Main_14500_99.java)
-- 
 - 입/출력
 > - 입력
 > > - 종이의 세로 크기 N과 가로 크기 M이 주어진다. (4 ≤ N, M ≤ 500)
@@ -403,7 +402,7 @@ public class Remote_Main_1107_99 {
 > 7
 ```
 - 매커니즘
-> - 테트로미노 만들기 DFS 전체탐색
+> - 테트로미노 만들기 & DFS 전체탐색
 - code 
 ```java
 public class Tetromino_Main_14500_99 {
@@ -485,18 +484,74 @@ public class Tetromino_Main_14500_99 {
 ```
 ------------------------------------------------------------------------------------------
 ### [카잉달력 - 6064](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/Caring_Main_6064_99.java)
-- 
-- 입/출력
-> - 입력
-> - 출력
-```txt
-
+- M과 N보다 작거나 같은 자연수 x, y과 주어질 때 몇번째 해인지 구하기
+```
+(x <= M) x` = x + 1
+(x > M) x` = 1
+y도 위와 같음
 ```
 - 매커니즘
-> - 테트로미노 만들기 DFS 전체탐색
+> - 규칙성 찾기
+> 1. x값은 M값이 더 해질때는 그대로, y만 변함
+> > 1:(1,1) 11: (1, 11)
+> 2. y값은 N값이 더해 질때는 그대로 x 값만 변함
+> > 1:(1,1) 13: (3, 1)
+> 3. 최대값은 M과 N의 최소공배수
+> 4. n * M 값에서 + (x - y)을 더하고 % N 값이 0인 값 구하기
+> > 예시
+```txt
+M: 10, N: 12 최대해 60
+x = 3, y = 9
+> x: 3, 13, 23, 33... (x + 10n) 번째해
+> y: (x + 10n - y) % N 인것
+```
+
+- 입/출력
+> - 입/출력
+```txt
+3
+10 12 3 9
+10 12 7 2
+13 11 5 6
+>33 -1 83
+```
 - code 
 ```java
+public class Caring_Main_6064_99 {
+    static int T;
 
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        T = Integer.parseInt(br.readLine());
+        for (int t = 1; t <= T; t++) {
+            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+            int M, N, x, y;
+            M = Integer.parseInt(st.nextToken());
+            N = Integer.parseInt(st.nextToken());
+            x = Integer.parseInt(st.nextToken());
+            y = Integer.parseInt(st.nextToken());
+
+            int answer = -1;
+            int n = 0;
+            int lcm = M * N / gcd(M, N);
+            while (n * M < lcm) {
+                if ((n * M + x - y) % N == 0) {
+                    answer = n * M + x;
+                    break;
+                }
+                n++;
+            }
+            System.out.println(answer);
+        }
+    }
+
+    public static int gcd(int x, int y) {
+        if (y == 0) {
+            return x;
+        }
+        return gcd(y, x % y);
+    }
+}
 ```
 ------------------------------------------------------------------------------------------
 ### [N과 M - 2309](https://github.com/kazean/algorithm/blob/main/src/main/java/baekjoon/basic2/bruteforce/NM_Main_15649_99.java)

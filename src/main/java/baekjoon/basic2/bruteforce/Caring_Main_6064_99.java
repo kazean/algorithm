@@ -3,6 +3,11 @@ package baekjoon.basic2.bruteforce;
  *
  */
 /*
+2
+10 12 3 3
+10 12 3 1
+> 3, 13
+
 3
 10 12 3 9
 10 12 7 2
@@ -33,30 +38,25 @@ public class Caring_Main_6064_99 {
             N = Integer.parseInt(st.nextToken());
             x = Integer.parseInt(st.nextToken());
             y = Integer.parseInt(st.nextToken());
-            System.out.println(solve(M, N, x, y));
+
+            int answer = -1;
+            int n = 0;
+            int lcm = M * N / gcd(M, N);
+            while (n * M < lcm) {
+                if ((n * M + x - y) % N == 0) {
+                    answer = n * M + x;
+                    break;
+                }
+                n++;
+            }
+            System.out.println(answer);
         }
     }
 
-    public static int solve(int M, int N, int x, int y) {
-        int tmpX, tmpY;
-        tmpX = tmpY = 0;
-        int result = 0;
-
-        while (!(tmpX == x && tmpY == y) ) {
-            tmpX++;
-            tmpY++;
-            result++;
-            if (tmpX > M) {
-                tmpX = 1;
-            }
-            if (tmpY > N) {
-                tmpY = 1;
-            }
-            if ((tmpX == M && tmpY == N) && (M != x && N != y)) {
-                result = -1;
-                break;
-            }
+    public static int gcd(int x, int y) {
+        if (y == 0) {
+            return x;
         }
-        return result;
+        return gcd(y, x % y);
     }
 }
